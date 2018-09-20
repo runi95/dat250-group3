@@ -3,6 +3,7 @@ package entities;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 public class Bid {
 
 	@Id
+	@GeneratedValue
 	private int id;
 	
 	private Double amount;
