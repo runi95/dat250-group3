@@ -32,7 +32,7 @@ public class Bid {
 	
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
-    public Auction getUser() { return this.user; }
+    public User getUser() { return this.user; }
 	
 	public int getId() { return this.id; }
 	
