@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -37,7 +38,7 @@ public class Auction implements Serializable {
 	
 	private Product product;
 	
-	private Set<Bid> bids;
+	private Set<Bid> bids = new HashSet<>();
 	
 	private User seller;
 	

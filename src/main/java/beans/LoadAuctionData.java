@@ -61,6 +61,7 @@ public class LoadAuctionData {
 		product.setFeatures(createFeatures());
 		product.setPicture(new byte[] {});
 		product.setPictureAsBase64("base64");
+		
 		return product;
 	}
 
@@ -68,6 +69,7 @@ public class LoadAuctionData {
 		ArrayList<String> features = new ArrayList<String>();
 		features.add("feature1");
 		features.add("feature2");
+		
 		return features;
 	}
 	
@@ -82,13 +84,15 @@ public class LoadAuctionData {
 		user.setEmail("emailAdress");
 		user.setNumberOfRatings(1);
 		user.setComments(createComments());
-		return null;
+		
+		return user;
 	}
 
 	private Set<Comment> createComments() {
 		Set<Comment> set = new HashSet<Comment>();
 		set.add(createComment("comment1"));
 		set.add(createComment("comment2"));
+		
 		return set;
 	}
 
