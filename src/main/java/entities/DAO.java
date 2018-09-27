@@ -19,9 +19,6 @@ public class DAO {
 	@PersistenceContext(unitName="group3")
 	private EntityManager em;
 	
-	@Resource(lookup = "jms/dat250/Topic")
-	private Topic topic;
-	
 	/**
 	 * Persists a user into the DB
 	 * 
