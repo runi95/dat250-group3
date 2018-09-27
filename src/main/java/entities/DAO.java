@@ -39,7 +39,7 @@ public class DAO {
      * @return users
      */
     public List<User> getAllUsers() {
-        Query query = em.createQuery("SELECT t FROM User u");
+        Query query = em.createQuery("SELECT u FROM User u");
         List<User> users = new ArrayList<>();
         users = query.getResultList();
         
