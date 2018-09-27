@@ -5,8 +5,8 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1527"/>
         <property name="databaseName" value="group3"/>
-        <property name="User" value="g2018_03"/>
-        <property name="Password" value="c68bvk5s"/>
+        <property name="User" value="admin"/>
+        <property name="Password" value="admin"/>
         <property name="connectionAttributes" value=";create=true" />
         <property name="URL" value="jdbc:derby://localhost:1527/group3;create=true"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
