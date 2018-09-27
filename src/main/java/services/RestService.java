@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -35,7 +36,12 @@ public class RestService {
 	@GET
 	@Path("rest/auctions/{id}")
 	public Response getAuction(@PathParam("id") String id) {
-		return Response.ok().build();
+		int idInt = Integer.parseInt(id);
+		Auction auction = em.find(Auction.class, idInt);
+		if (auction == null)
+			throw new NotFoundException();
+		
+		return Response.ok(auction).build();
 	}
 	
 	@GET
