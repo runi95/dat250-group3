@@ -19,9 +19,6 @@ public class DAO {
 	@PersistenceContext(unitName="group3")
 	private EntityManager em;
 	
-	@Resource(lookup = "jms/dat250/Topic")
-	private Topic topic;
-	
 	/**
 	 * Persists a user into the DB
 	 * 
@@ -39,7 +36,7 @@ public class DAO {
      * @return users
      */
     public List<User> getAllUsers() {
-        Query query = em.createQuery("SELECT t FROM User u");
+        Query query = em.createQuery("SELECT u FROM User u");
         List<User> users = new ArrayList<>();
         users = query.getResultList();
         

@@ -39,7 +39,7 @@ public class Auction {
 	public void setProduct(Product product) { this.product = product; }
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="auction")
-    public Set<Bid> getOrders() { return this.bids; }
+    public Set<Bid> getBids() { return this.bids; }
 	
 	public void setBids(Set<Bid> bids) { this.bids = bids; }
 	
