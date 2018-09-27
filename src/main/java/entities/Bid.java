@@ -23,7 +23,7 @@ public class Bid implements Serializable {
 	public static final String FIND_ALL = "Bid.findAll";
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private Double amount;

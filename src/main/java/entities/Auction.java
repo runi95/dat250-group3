@@ -27,7 +27,7 @@ public class Auction implements Serializable {
 	public static final String FIND_ALL = "Auction.findAll";
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private Double lastBid;
