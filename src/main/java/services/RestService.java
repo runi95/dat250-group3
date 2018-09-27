@@ -3,11 +3,17 @@ package services;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import entities.Auction;
+import entities.Auctions;
 
 @Path("/group3")
 @Stateless
@@ -18,8 +24,12 @@ public class RestService {
 	
 	@GET
 	@Path("rest/auctions")
+	@Produces(MediaType.APPLICATION_XML)
 	public Response getAuctions() {
-		return Response.ok().build();
+		TypedQuery<Auction> query = em.createNamedQuery(Auction.FIND_ALL, Auction.class);
+		Auctions auctions = new Auctions(query.getResultList());
+		
+		return Response.ok(auctions).build();
 	}
 
 	@GET

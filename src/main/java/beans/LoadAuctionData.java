@@ -57,7 +57,7 @@ public class LoadAuctionData {
 		product.setPublushedState(false);
 		product.setRating(1.337);
 		product.setFeatures(createFeatures());
-		product.setPicture(null);
+		product.setPicture(new byte[] {});
 		product.setPictureAsBase64("base64");
 		return product;
 	}

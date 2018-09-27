@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -9,13 +10,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "auction")
-public class Auction {
+@XmlRootElement
+@NamedQuery(name="Auction.findAll", query="SELECT a FROM Auction a")
+public class Auction implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_ALL = "Auction.findAll";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
