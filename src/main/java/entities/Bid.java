@@ -9,12 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "bid")
+@XmlRootElement
+@NamedQuery(name="Bid.findAll", query="SELECT b FROM Bid b")
 public class Bid implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String FIND_ALL = "Bid.findAll";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

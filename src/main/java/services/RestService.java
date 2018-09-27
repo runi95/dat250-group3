@@ -15,6 +15,8 @@ import javax.ws.rs.core.Response;
 
 import entities.Auction;
 import entities.Auctions;
+import entities.Bid;
+import entities.Bids;
 
 @Path("/group3")
 @Stateless
@@ -37,6 +39,7 @@ public class RestService {
 	@Path("rest/auctions/{id}")
 	public Response getAuction(@PathParam("id") String id) {
 		int idInt = Integer.parseInt(id);
+		
 		Auction auction = em.find(Auction.class, idInt);
 		if (auction == null)
 			throw new NotFoundException();
@@ -47,18 +50,36 @@ public class RestService {
 	@GET
 	@Path("rest/auctions/{id}/bids")
 	public Response getAuctionBids(@PathParam("id") String id) {
-		return Response.ok().build();
+		TypedQuery<Bid> query = em.createNamedQuery(Bid.FIND_ALL, Bid.class);
+		Bids bids  = new Bids(query.getResultList());
+		
+		return Response.ok(bids).build();
 	}
 	
 	@GET
 	@Path("rest/auctions/{aid}/bids/{bid}")
 	public Response getAuctionBid(@PathParam("aid") String aid, @PathParam("bid") String bid) {
-		return Response.ok().build();
+		int bidInt = Integer.parseInt(bid);
+		
+		Bid bidClass = em.find(Bid.class, bidInt);
+		if (bidClass == null)
+			throw new NotFoundException();
+		
+		return Response.ok(bidClass).build();
 	}
 	
+	// TODO: Figure this shit out.
 	@POST
 	@Path("rest/auctions/{id}/bids")
-	public Response setAuctionBid(@PathParam("id") String id) {
+	public Response setAuctionBid(@PathParam("id") String id, Bid bid) {
+		int idInt = Integer.parseInt(id);
+		
+		Auction auction = em.find(Auction.class, idInt);
+		if (auction == null)
+			throw new NotFoundException();
+		
+		em.persist(bid);
+		
 		return Response.ok().build();
 	}
 }
