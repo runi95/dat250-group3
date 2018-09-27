@@ -34,6 +34,8 @@ public class Comment {
 	
 	public int getId() { return this.id; }
 	
+	public void setId(int id) { this.id = id; }
+	
 	public double getRating() { return this.rating; }
 	
 	public void setRating(double rating) { this.rating = rating; }
