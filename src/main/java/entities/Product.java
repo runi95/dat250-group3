@@ -35,11 +35,21 @@ public class Product {
 	@OneToOne(optional=false, mappedBy="product")
     public Auction getAuction() { return this.auction; }
 	
+	public void setAuction(Auction auction) { this.auction = auction; }
+	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
 	
+	public void setComments(Set<Comment> comments) { this.comments = comments; }
+	
+	public void addComment(Comment comment) { this.comments.add(comment); }
+	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="product")
-    public Set<Category> getOrders() { return this.categories; }
+    public Set<Category> getCategories() { return this.categories; }
+	
+	public void setCategories(Set<Category> categories) { this.categories = categories; }
+	
+	public void addCategory(Category category) { this.categories.add(category); }
 	
 	public int getId() { return this.id; }
 	

@@ -34,9 +34,13 @@ public class Bid {
     @JoinColumn(name="id", nullable=false)
     public Auction getAuction() { return this.auction; }
 	
+	public void setAuction(Auction auction) { this.auction = auction; }
+	
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public User getUser() { return this.user; }
+	
+	public void setUser(User user) { this.user = user; }
 	
 	public int getId() { return this.id; }
 	

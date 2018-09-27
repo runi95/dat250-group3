@@ -30,6 +30,8 @@ public class Comment {
     @JoinColumn(name="id", nullable=false)
     public Product getProduct() { return this.product; }
 	
+	public void setProduct(Product product) { this.product = product; }
+	
 	public int getId() { return this.id; }
 	
 	public double getRating() { return this.rating; }

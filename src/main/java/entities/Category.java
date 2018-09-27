@@ -32,12 +32,22 @@ public class Category {
     @JoinColumn(name="id", nullable=false)
     public Product getProduct() { return this.product; }
 	
+	public void setProduct(Product product) { this.product = product; }
+	
 	@ManyToMany
     @JoinTable(name="id")
     public Set<Category> getSubcategories() { return this.subCategories; }
 	
+	public void setSubcategories(Set<Category> subCategories) { this.subCategories = subCategories; }
+	
+	public void addSubCategory(Category subCategory) { this.subCategories.add(subCategory); }
+	
 	@ManyToMany(mappedBy="superCategories")
     public Set<Category> getSuperCategories() { return this.superCategories; }
+	
+	public void setSuperCategories(Set<Category> superCategories) { this.superCategories = superCategories; }
+	
+	public void addSuperCategory(Category superCategory) { this.superCategories.add(superCategory); }
 	
 	public int getId() { return this.id; }
 	
