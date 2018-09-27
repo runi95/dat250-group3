@@ -18,7 +18,7 @@ import entities.Auctions;
 import entities.Bid;
 import entities.Bids;
 
-@Path("/group3")
+@Path("/rest")
 @Stateless
 public class RestService {
 	
@@ -26,7 +26,7 @@ public class RestService {
 	private EntityManager em;
 	
 	@GET
-	@Path("rest/auctions")
+	@Path("auctions")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response getAuctions() {
 		TypedQuery<Auction> query = em.createNamedQuery(Auction.FIND_ALL, Auction.class);
@@ -36,7 +36,7 @@ public class RestService {
 	}
 
 	@GET
-	@Path("rest/auctions/{id}")
+	@Path("auctions/{id}")
 	public Response getAuction(@PathParam("id") String id) {
 		int idInt = Integer.parseInt(id);
 		
@@ -48,7 +48,7 @@ public class RestService {
 	}
 	
 	@GET
-	@Path("rest/auctions/{id}/bids")
+	@Path("auctions/{id}/bids")
 	public Response getAuctionBids(@PathParam("id") String id) {
 		TypedQuery<Bid> query = em.createNamedQuery(Bid.FIND_ALL, Bid.class);
 		Bids bids  = new Bids(query.getResultList());
@@ -57,7 +57,7 @@ public class RestService {
 	}
 	
 	@GET
-	@Path("rest/auctions/{aid}/bids/{bid}")
+	@Path("auctions/{aid}/bids/{bid}")
 	public Response getAuctionBid(@PathParam("aid") String aid, @PathParam("bid") String bid) {
 		int bidInt = Integer.parseInt(bid);
 		
@@ -70,7 +70,7 @@ public class RestService {
 	
 	// TODO: Figure this shit out.
 	@POST
-	@Path("rest/auctions/{id}/bids")
+	@Path("auctions/{id}/bids")
 	public Response setAuctionBid(@PathParam("id") String id, Bid bid) {
 		int idInt = Integer.parseInt(id);
 		
