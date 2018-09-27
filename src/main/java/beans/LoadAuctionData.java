@@ -29,6 +29,7 @@ public class LoadAuctionData {
 		Bid bid = createBid(1.0);
 		Bid bid2 = createBid(2.0);
 		Product product = createProduct();
+		User seller = createUser(1);
 		User buyer = createUser(2);
 		bid.setUser(buyer);
 		bid2.setUser(buyer);
@@ -39,6 +40,7 @@ public class LoadAuctionData {
 		auction.setEndTime(LocalDateTime.now().plusHours(1));
 		auction.setLastBid(bid2.getAmount());
 		auction.setProduct(product);
+		auction.setSeller(seller);
 		
 		em.persist(auction);
 	}
@@ -80,31 +82,7 @@ public class LoadAuctionData {
 		user.setEmail("emailAdress");
 		user.setNumberOfRatings(1);
 		user.setComments(createComments());
-		user.setAuctions(createAuchtions());
 		return null;
-	}
-
-	private Set<Auction> createAuchtions() {
-		Set<Auction> set = new HashSet<Auction>();
-		set.add(createAuction(2));
-		set.add(createAuction(3));
-		return set;
-	}
-
-	private Auction createAuction(int i) {
-		Auction auction = new Auction();
-		auction.setProduct(createProduct());
-		auction.setPublishedTime(LocalDateTime.now());
-		auction.setEndTime(LocalDateTime.now().plusHours(1));
-		auction.setBids(createBids());
-		return null;
-	}
-
-	private Set<Bid> createBids() {
-		Set<Bid> set = new HashSet<>();
-		set.add(createBid(3.0));
-		set.add(createBid(4.5));
-		return set;
 	}
 
 	private Set<Comment> createComments() {
