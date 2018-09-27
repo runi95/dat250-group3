@@ -1,8 +1,6 @@
 package beans;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +29,6 @@ public class LoadAuctionData {
 		Bid bid = createBid(1.0);
 		Bid bid2 = createBid(2.0);
 		Product product = createProduct();
-		User seller = createUser(1);
 		User buyer = createUser(2);
 		bid.setUser(buyer);
 		bid2.setUser(buyer);
@@ -111,7 +108,7 @@ public class LoadAuctionData {
 	}
 
 	private Set<Comment> createComments() {
-		Set<Comment> set = new HashSet();
+		Set<Comment> set = new HashSet<Comment>();
 		set.add(createComment("comment1"));
 		set.add(createComment("comment2"));
 		return set;
