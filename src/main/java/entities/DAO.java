@@ -16,7 +16,7 @@ import javax.persistence.Query;
 public class DAO {
 	
 	// Injected database connection:
-	@PersistenceContext(unitName="group3")
+	@PersistenceContext(unitName="g2018_03")
 	private EntityManager em;
 	
 	/**

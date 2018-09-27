@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hvl.dat250</groupId>
-  <artifactId>group3</artifactId>
+  <artifactId>g2018_03</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>group3 Maven Webapp</name>
+  <name>g2018_03 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -63,6 +63,11 @@
 		<artifactId>persistence-api</artifactId>
 		<version>1.0.2</version>
 	</dependency>
+	<dependency>
+	<groupId>postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>9.1-901-1.jdbc4</version>
+</dependency>
 	<!-- For using JSON to send to Dweet -->
 	<dependency>
 		<groupId>com.google.code.gson</groupId>
@@ -71,7 +76,7 @@
 	</dependency>
   </dependencies>
   <build>
-	<finalName>group3</finalName>
+	<finalName>g2018_03</finalName>
 	<pluginManagement>
 		<plugins>
 			<plugin>
