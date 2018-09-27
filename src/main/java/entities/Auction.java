@@ -31,6 +31,8 @@ public class Auction {
 	
 	private Set<Bid> bids;
 	
+	private User seller;
+	
 	@OneToOne(optional=false)
     @JoinColumn(
         name="id", unique=true, nullable=false)
@@ -58,4 +60,12 @@ public class Auction {
 	public LocalDateTime getPublishedTime() { return this.published; }
 	
 	public void setPublishedTime(LocalDateTime published) { this.published = published; }
+
+	public User getSeller() {
+		return seller;
+	}
+
+	public void setSeller(User seller) {
+		this.seller = seller;
+	}
 }
