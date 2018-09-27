@@ -36,8 +36,14 @@ public class Auction {
         name="id", unique=true, nullable=false)
     public Product getProduct() { return this.product; }
 	
+	public void setProduct(Product product) { this.product = product; }
+	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="auction")
     public Set<Bid> getOrders() { return this.bids; }
+	
+	public void setBids(Set<Bid> bids) { this.bids = bids; }
+	
+	public void addBid(Bid bid) { this.bids.add(bid); }
 	
 	public int getId() { return this.id; }
 	
