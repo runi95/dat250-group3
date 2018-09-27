@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -12,8 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bid")
-public class Bid {
-
+public class Bid implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;

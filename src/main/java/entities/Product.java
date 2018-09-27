@@ -1,5 +1,6 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Set;
@@ -8,7 +9,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
