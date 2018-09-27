@@ -30,6 +30,8 @@ public class Product {
 	
 	private Set<Category> categories;
 	
+	private ArrayList<Bid> bids;
+	
 	@OneToOne(optional=false, mappedBy="product")
     public Auction getAuction() { return this.auction; }
 	
@@ -66,4 +68,10 @@ public class Product {
 	public Boolean isPublished() { return this.isPublished; }
 	
 	public void setPublushedState(boolean isPublished) { this.isPublished = isPublished; }
+
+	public ArrayList<Bid> getBids() { return this.bids;}
+
+	public void addBids(ArrayList<Bid> bids) {
+		this.bids = bids;
+	}
 }
