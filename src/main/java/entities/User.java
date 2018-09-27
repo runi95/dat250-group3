@@ -28,7 +28,7 @@ public class User {
     private double sumOfAllRatings; 
     private int numberOfRatings; 
     private Set<Comment> comments;
-    private Set<Auction> auctions;
+    //private Set<Auction> auctions;
      
     public User() {
     	
@@ -43,14 +43,14 @@ public class User {
     	this.sumOfAllRatings = 0.0;
     	this.numberOfRatings = 0;
     	this.comments = new HashSet<Comment>();
-    	this.auctions = new HashSet<Auction>();
+    	//this.auctions = new HashSet<Auction>();
     }
     
     @OneToMany(cascade=CascadeType.ALL, mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
     
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="product")
-    public Set<Auction> getAuctions() { return this.auctions; }
+    //@OneToMany(cascade=CascadeType.ALL, mappedBy="product")
+    //public Set<Auction> getAuctions() { return this.auctions; }
     
     public int getId() {
     	return this.id;
@@ -105,9 +105,9 @@ public class User {
 		this.comments = comments;
 	}
 
-	public void setAuctions(Set<Auction> auctions) {
+	/*public void setAuctions(Set<Auction> auctions) {
 		this.auctions = auctions;
-	}
+	}*/
 
 	public String getName() { 
         return name; 
