@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType; 
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table; 
 
@@ -31,6 +30,10 @@ public class User {
     private Set<Comment> comments;
     private Set<Auction> auctions;
      
+    public User() {
+    	
+    }
+    
     public User(String name, String lastName, String userName, String password, String email) {
     	this.name = name;
     	this.lastName = lastName;
@@ -66,7 +69,47 @@ public class User {
         return this.sumOfAllRatings / this.numberOfRatings; 
     } 
 
-    public String getName() { 
+    public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setSumOfAllRatings(double sumOfAllRatings) {
+		this.sumOfAllRatings = sumOfAllRatings;
+	}
+
+	public void setNumberOfRatings(int numberOfRatings) {
+		this.numberOfRatings = numberOfRatings;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public void setAuctions(Set<Auction> auctions) {
+		this.auctions = auctions;
+	}
+
+	public String getName() { 
         return name; 
     } 
 
