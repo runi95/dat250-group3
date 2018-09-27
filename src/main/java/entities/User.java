@@ -28,7 +28,6 @@ public class User {
     private String email; 
     private double sumOfAllRatings; 
     private int numberOfRatings; 
-    private Set<Bid> bids;
     private Set<Comment> comments;
     private Set<Auction> auctions;
      
@@ -40,19 +39,14 @@ public class User {
     	this.email = email;
     	this.sumOfAllRatings = 0.0;
     	this.numberOfRatings = 0;
-    	this.bids = new HashSet<Bid>();
     	this.comments = new HashSet<Comment>();
     	this.auctions = new HashSet<Auction>();
     }
     
-    
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="product")
-    public Set<Bid> getBids() { return this.bids; }
-
     @OneToMany(cascade=CascadeType.ALL, mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
     
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="product")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="product")
     public Set<Auction> getAuctions() { return this.auctions; }
     
     public int getId() {
