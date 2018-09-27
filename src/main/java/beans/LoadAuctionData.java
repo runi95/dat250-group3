@@ -8,21 +8,20 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import entities.Auction;
 import entities.Bid;
 import entities.Comment;
+import entities.DAO;
 import entities.Product;
 import entities.User;
 
+/*
 @Singleton
 @Startup
 public class LoadAuctionData {
 	
-	@PersistenceContext(unitName = "g2018_03")
-	private EntityManager em;
+	DAO dao = new DAO();
 	
 	@PostConstruct
 	public void createData() {
@@ -42,7 +41,7 @@ public class LoadAuctionData {
 		auction.setProduct(product);
 		auction.setSeller(seller);
 		
-		em.persist(auction);
+		dao.persistAuction(auction);
 	}
 
 	private Bid createBid(double amount) {
@@ -104,6 +103,5 @@ public class LoadAuctionData {
 		comment.setText("CommentText");
 		return comment;
 	}
-	
-	
 }
+*/

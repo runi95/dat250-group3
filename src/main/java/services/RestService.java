@@ -1,8 +1,6 @@
 package services;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
@@ -17,19 +15,20 @@ import entities.Auction;
 import entities.Auctions;
 import entities.Bid;
 import entities.Bids;
+import entities.DAO;
 
+/*
 @Path("/rest")
 @Stateless
 public class RestService {
 	
-	@PersistenceContext(unitName = "g2018_03")
-	private EntityManager em;
+	private DAO dao = new DAO();
 	
 	@GET
 	@Path("auctions")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response getAuctions() {
-		TypedQuery<Auction> query = em.createNamedQuery(Auction.FIND_ALL, Auction.class);
+		TypedQuery<Auction> query = dao.createNamedAuctionQuery();
 		Auctions auctions = new Auctions(query.getResultList());
 		
 		return Response.ok(auctions).build();
@@ -40,7 +39,7 @@ public class RestService {
 	public Response getAuction(@PathParam("id") String id) {
 		int idInt = Integer.parseInt(id);
 		
-		Auction auction = em.find(Auction.class, idInt);
+		Auction auction = dao.findAuction(idInt);
 		if (auction == null)
 			throw new NotFoundException();
 		
@@ -50,7 +49,7 @@ public class RestService {
 	@GET
 	@Path("auctions/{id}/bids")
 	public Response getAuctionBids(@PathParam("id") String id) {
-		TypedQuery<Bid> query = em.createNamedQuery(Bid.FIND_ALL, Bid.class);
+		TypedQuery<Bid> query = dao.createNamedBidQuery();
 		Bids bids  = new Bids(query.getResultList());
 		
 		return Response.ok(bids).build();
@@ -61,7 +60,7 @@ public class RestService {
 	public Response getAuctionBid(@PathParam("aid") String aid, @PathParam("bid") String bid) {
 		int bidInt = Integer.parseInt(bid);
 		
-		Bid bidClass = em.find(Bid.class, bidInt);
+		Bid bidClass = dao.findBid(bidInt);
 		if (bidClass == null)
 			throw new NotFoundException();
 		
@@ -74,12 +73,13 @@ public class RestService {
 	public Response setAuctionBid(@PathParam("id") String id, Bid bid) {
 		int idInt = Integer.parseInt(id);
 		
-		Auction auction = em.find(Auction.class, idInt);
+		Auction auction = dao.findAuction(idInt);
 		if (auction == null)
 			throw new NotFoundException();
 		
-		em.persist(bid);
+		dao.persistBid(bid);
 		
 		return Response.ok().build();
 	}
 }
+*/

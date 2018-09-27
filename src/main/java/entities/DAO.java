@@ -3,21 +3,44 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.jms.JMSException;
-import javax.jms.Topic;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Stateless
 public class DAO {
 	
-	// Injected database connection:
-	@PersistenceContext(unitName="g2018_03")
+	@PersistenceContext()
 	private EntityManager em;
+	
+	public TypedQuery<Auction> createNamedAuctionQuery() {
+		return em.createNamedQuery(Auction.FIND_ALL, Auction.class);
+	}
+	
+	public Auction findAuction(int id) {
+		return em.find(Auction.class, id);
+	}
+	
+	public TypedQuery<Bid> createNamedBidQuery() {
+		return em.createNamedQuery(Bid.FIND_ALL, Bid.class);
+	}
+	
+	public Bid findBid(int id) {
+		return em.find(Bid.class, id);
+	}
+
+	public void persistBid(Bid bid) {
+		em.persist(bid);
+	}
+	
+	public void persistAuction(Auction auction) {
+		em.persist(auction);
+	}
 	
 	/**
 	 * Persists a user into the DB
