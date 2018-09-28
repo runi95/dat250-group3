@@ -48,6 +48,8 @@ public class Bid implements Serializable {
 	
 	public int getId() { return this.id; }
 	
+	public void setId(int id) { this.id = id; }
+	
 	public double getAmount() { return this.amount; }
 	
 	public void setAmount(double amount) { this.amount = amount; }

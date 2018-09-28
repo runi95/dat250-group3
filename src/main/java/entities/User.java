@@ -48,7 +48,7 @@ public class User implements Serializable {
     	//this.auctions = new HashSet<Auction>();
     }
     
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="product")
+    @OneToMany(mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
     
     //@OneToMany(cascade=CascadeType.ALL, mappedBy="product")

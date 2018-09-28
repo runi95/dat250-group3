@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class DAO {
 	
-	@PersistenceContext()
+	@PersistenceContext
 	private EntityManager em;
 	
 	public TypedQuery<Auction> createNamedAuctionQuery() {
@@ -42,6 +42,14 @@ public class DAO {
 		em.persist(auction);
 	}
 	
+	public void persistProduct(Product product) {
+		em.persist(product);
+	}
+	
+	public void persistComment(Comment comment) {
+		em.persist(comment);
+	}
+	
 	/**
 	 * Persists a user into the DB
 	 * 
@@ -49,7 +57,7 @@ public class DAO {
 	 * @throws NamingException
 	 * @throws JMSException
 	 */
-    public void persist(User user) throws NamingException, JMSException {
+    public void persist(User user) {
         em.persist(user);
     }
     

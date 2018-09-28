@@ -1,8 +1,8 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Product implements Serializable {
 	
 	private String pictureAsBase64;
 	
-	private ArrayList<String> features;
+	private List<String> features;
 	
 	private Double rating;
 	
@@ -32,7 +32,7 @@ public class Product implements Serializable {
 	
 	private Set<Category> categories;
 	
-	private ArrayList<Bid> bids;
+	private List<Bid> bids;
 	
 	@OneToOne(mappedBy="product")
     public Auction getAuction() { return this.auction; }
@@ -67,9 +67,9 @@ public class Product implements Serializable {
 		this.pictureAsBase64 = Base64.getEncoder().encodeToString(picture);
 	}
 	
-	public ArrayList<String> getFeatures() { return this.features; }
+	public List<String> getFeatures() { return this.features; }
 	
-	public void setFeatures(ArrayList<String> features) { this.features = features; }
+	public void setFeatures(List<String> features) { this.features = features; }
 	
 	public void addFeature(String feature) { this.features.add(feature); }
 	
@@ -81,9 +81,9 @@ public class Product implements Serializable {
 	
 	public void setPublushedState(boolean isPublished) { this.isPublished = isPublished; }
 
-	public ArrayList<Bid> getBids() { return this.bids;}
+	public List<Bid> getBids() { return this.bids;}
 
-	public void addBids(ArrayList<Bid> bids) {
+	public void addBids(List<Bid> bids) {
 		this.bids = bids;
 	}
 }

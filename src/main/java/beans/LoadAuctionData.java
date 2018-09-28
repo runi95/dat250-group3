@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -16,20 +17,30 @@ import entities.DAO;
 import entities.Product;
 import entities.User;
 
-/*
 @Singleton
 @Startup
 public class LoadAuctionData {
 	
-	DAO dao = new DAO();
+	@EJB
+	DAO dao;
 	
 	@PostConstruct
 	public void createData() {
 		Bid bid = createBid(1.0);
+		dao.persistBid(bid);
+		
 		Bid bid2 = createBid(2.0);
+		dao.persistBid(bid2);
+		
 		Product product = createProduct();
+		dao.persistProduct(product);
+		
 		User seller = createUser(1);
+		dao.persist(seller);
+		
 		User buyer = createUser(2);
+		dao.persist(buyer);
+		
 		bid.setUser(buyer);
 		bid2.setUser(buyer);
 		Auction auction = new Auction();
@@ -74,7 +85,6 @@ public class LoadAuctionData {
 	
 	private User createUser(int id) {
 		User user = new User();
-		user.setId(id);
 		user.setName("FirstName");
 		user.setLastName("LastName");
 		user.setUserName("userName");
@@ -98,10 +108,11 @@ public class LoadAuctionData {
 	private Comment createComment(String string) {
 		Comment comment = new Comment();
 		comment.setCreated(LocalDateTime.now());
-		comment.setProduct(createProduct());
+		// comment.setProduct(createProduct());
 		comment.setRating(3.5);
 		comment.setText("CommentText");
+		dao.persistComment(comment);
+		
 		return comment;
 	}
 }
-*/

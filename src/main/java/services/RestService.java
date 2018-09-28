@@ -1,5 +1,6 @@
 package services;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.GET;
@@ -22,7 +23,8 @@ import entities.DAO;
 @Stateless
 public class RestService {
 	
-	private DAO dao = new DAO();
+	@EJB
+	DAO dao;
 	
 	@GET
 	@Path("auctions")
