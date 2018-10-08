@@ -3,17 +3,17 @@ package services;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response;
 
-@Path("/helloworld")
+@Path("hei")
 @Stateless
 public class HelloWorld {
 
 	@GET
-    @Produces("text/plain")
-    public String getHtml() {
-        return "H2G2";
+    //@Produces("text/plain")
+    public Response getHtml() {
+
+        return Response.ok("hæææææææææi").build();
+    //return "H2G2";
     }
 }
