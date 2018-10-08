@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hvl.dat250</groupId>
-  <artifactId>g2018_03</artifactId>
+  <artifactId>sinom</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>g2018_03 Maven Webapp</name>
@@ -80,7 +80,7 @@
 	</dependency>
   </dependencies>
   <build>
-	<finalName>g2018_03</finalName>
+	<finalName>sinom</finalName>
 	<pluginManagement>
 		<plugins>
 			<plugin>

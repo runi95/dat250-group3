@@ -15,7 +15,8 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class DAO {
 	
-	@PersistenceContext
+	@PersistenceContext(unitName = "derby")
+	// Bytt derby til db_g2018_03 for å bruke den databasen postgresql
 	private EntityManager em;
 	
 	public TypedQuery<Auction> createNamedAuctionQuery() {
