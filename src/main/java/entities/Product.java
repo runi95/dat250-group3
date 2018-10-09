@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "product")
+@XmlRootElement
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

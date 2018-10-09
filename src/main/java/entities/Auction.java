@@ -41,7 +41,7 @@ public class Auction implements Serializable {
 	private Set<Bid> bids = new HashSet<>();
 	
 	private User seller;
-	
+
 	@OneToOne(optional=false)
     @JoinColumn(
         name="id", unique=true, nullable=false)

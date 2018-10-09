@@ -18,8 +18,8 @@ import entities.Bid;
 import entities.Bids;
 import entities.DAO;
 
-/*
-@Path("/rest")
+
+/*@Path("/rest")
 @Stateless
 public class RestService {
 	
@@ -83,5 +83,4 @@ public class RestService {
 		
 		return Response.ok().build();
 	}
-}
-*/
+}*/

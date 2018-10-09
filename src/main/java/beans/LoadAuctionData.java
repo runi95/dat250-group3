@@ -14,16 +14,12 @@ import javax.inject.Inject;
 import entities.Auction;
 import entities.Bid;
 import entities.Comment;
-import entities.DAO;
 import entities.Product;
 import entities.User;
 
 @Singleton
 @Startup
 public class LoadAuctionData {
-	
-	@EJB
-	DAO dao;
 
 	@Inject
 	UserDao userDao;
@@ -132,7 +128,7 @@ public class LoadAuctionData {
 		// comment.setProduct(createProduct());
 		comment.setRating(3.5);
 		comment.setText("CommentText");
-		dao.persistComment(comment);
+		commentDao.persist(comment);
 		
 		return comment;
 	}
