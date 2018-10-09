@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 
 import entities.Auction;
 import entities.Bid;
@@ -23,23 +24,43 @@ public class LoadAuctionData {
 	
 	@EJB
 	DAO dao;
-	
+
+	@Inject
+	UserDao userDao;
+
+	@Inject
+    AuctionDao auctionDao;
+
+	@Inject
+    BidDao bidDao;
+
+	@Inject
+    CategoryDao categoryDao;
+
+	@Inject
+    CommentDao commentDao;
+
+	@Inject
+    ProductDao productDao;
+
+
+
 	@PostConstruct
 	public void createData() {
-		Bid bid = createBid(1.0);
-		dao.persistBid(bid);
+		Bid bid = createBid(9.0);
+		bidDao.persist(bid);
 		
 		Bid bid2 = createBid(2.0);
-		dao.persistBid(bid2);
+		bidDao.persist(bid2);
 		
 		Product product = createProduct();
-		dao.persistProduct(product);
+		productDao.persist(product);
 		
-		User seller = createUser(1);
-		dao.persist(seller);
+		User seller = createUser();
+		userDao.persist(seller);
 		
-		User buyer = createUser(2);
-		dao.persist(buyer);
+		User buyer = createUser();
+		userDao.persist(buyer);
 		
 		bid.setUser(buyer);
 		bid2.setUser(buyer);
@@ -52,14 +73,14 @@ public class LoadAuctionData {
 		auction.setProduct(product);
 		auction.setSeller(seller);
 		
-		dao.persistAuction(auction);
+		auctionDao.persist(auction);
 	}
 
 	private Bid createBid(double amount) {
 		Bid bid = new Bid();
 		bid.setAmount(amount);
 		bid.setTime(LocalDateTime.now());
-		bid.setUser(createUser(2));
+		bid.setUser(createUser());
 		return bid;
 	}
 
@@ -76,16 +97,16 @@ public class LoadAuctionData {
 	}
 
 	private ArrayList<String> createFeatures() {
-		ArrayList<String> features = new ArrayList<String>();
+		ArrayList<String> features = new ArrayList<>();
 		features.add("feature1");
 		features.add("feature2");
 		
 		return features;
 	}
 	
-	private User createUser(int id) {
+	private User createUser() {
 		User user = new User();
-		user.setName("FirstName");
+		user.setName("First");
 		user.setLastName("LastName");
 		user.setUserName("userName");
 		user.setPassword("password");

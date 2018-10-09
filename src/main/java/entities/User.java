@@ -33,9 +33,9 @@ public class User implements Serializable {
     //private Set<Auction> auctions;
      
     public User() {
-    	
+
     }
-    
+
     public User(String name, String lastName, String userName, String password, String email) {
     	this.name = name;
     	this.lastName = lastName;
@@ -47,7 +47,7 @@ public class User implements Serializable {
     	this.comments = new HashSet<Comment>();
     	//this.auctions = new HashSet<Auction>();
     }
-    
+
     @OneToMany(mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
     
