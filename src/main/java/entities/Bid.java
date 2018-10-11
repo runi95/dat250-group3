@@ -36,7 +36,7 @@ public class Bid implements Serializable {
 	public Bid() {
 
 	}
-	
+
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public User getUser() { return this.user; }
