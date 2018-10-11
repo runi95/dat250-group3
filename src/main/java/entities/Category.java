@@ -31,7 +31,11 @@ public class Category implements Serializable {
 	private Set<Category> subCategories;
 	
 	private Set<Category> superCategories;
-	
+
+	public Category(){
+
+	}
+
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public Product getProduct() { return this.product; }

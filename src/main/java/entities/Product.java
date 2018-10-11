@@ -35,7 +35,11 @@ public class Product implements Serializable {
 	private Set<Category> categories;
 	
 	private List<Bid> bids;
-	
+
+	public Product(){
+
+	}
+
 	@OneToOne(mappedBy="product")
     public Auction getAuction() { return this.auction; }
 	

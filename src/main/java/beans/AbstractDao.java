@@ -10,25 +10,30 @@ public abstract class AbstractDao<T> {
     private Class<T> entityClass;
 
     @PersistenceContext(unitName = "derby")
-    private EntityManager em;
+    protected EntityManager em;
 
     public AbstractDao(Class<T> entityClass){
+
         this.entityClass = entityClass;
     }
 
     public void edit(T entity){
+
         em.merge(entity);
     }
 
     public void persist(T entity){
+
         em.persist(entity);
     }
 
     public void remove(T entity){
+
         em.remove(em.merge(entity));
     }
 
     public T find(Object id){
+
         return em.find(entityClass, id);
     }
 

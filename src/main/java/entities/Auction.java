@@ -42,6 +42,10 @@ public class Auction implements Serializable {
 	
 	private User seller;
 
+	public Auction() {
+
+	}
+
 	@OneToOne(optional=false)
     @JoinColumn(
         name="id", unique=true, nullable=false)

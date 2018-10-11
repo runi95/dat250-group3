@@ -16,7 +16,6 @@ import entities.Auction;
 import entities.Auctions;
 import entities.Bid;
 import entities.Bids;
-import entities.DAO;
 
 
 /*@Path("/rest")

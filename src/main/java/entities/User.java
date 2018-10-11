@@ -33,7 +33,7 @@ public class User implements Serializable {
     private int numberOfRatings; 
     private Set<Comment> comments;
     //private Set<Auction> auctions;
-     
+
     public User() {
 
     }

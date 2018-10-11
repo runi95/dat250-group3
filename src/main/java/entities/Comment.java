@@ -29,7 +29,11 @@ public class Comment implements Serializable {
 	private LocalDateTime created;
 	
 	private Product product;
-	
+
+	public Comment(){
+
+	}
+
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public Product getProduct() { return this.product; }

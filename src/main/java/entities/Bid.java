@@ -34,6 +34,10 @@ public class Bid implements Serializable {
 	
 	private User user;
 
+	public Bid() {
+
+	}
+
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public Auction getAuction() { return this.auction; }

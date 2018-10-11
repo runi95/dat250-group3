@@ -10,4 +10,5 @@ public class AuctionDao extends AbstractDao<Auction> {
     public AuctionDao() {
         super(Auction.class);
     }
+
 }
