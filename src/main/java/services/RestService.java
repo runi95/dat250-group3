@@ -1,7 +1,6 @@
 package services;
 
 import beans.AuctionDao;
-import beans.BidDao;
 import beans.UserDao;
 import com.google.common.collect.Iterables;
 import entities.Auction;
@@ -14,7 +13,6 @@ import javax.inject.Inject;
 import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,12 +27,6 @@ public class RestService extends Application {
 
     @Inject
     private UserDao userDao;
-
-    @Inject
-    private BidDao bidDao;
-
-    @Context
-    UriInfo uri;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
