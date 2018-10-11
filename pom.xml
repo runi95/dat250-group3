@@ -77,6 +77,11 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>26.0-jre</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>g2018_03</finalName>

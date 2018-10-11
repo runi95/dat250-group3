@@ -30,26 +30,13 @@ public class Bid implements Serializable {
 	
 	private LocalDateTime time;
 	
-	// private Auction auction;
-	
+
 	private User user;
 
 	public Bid() {
 
 	}
 
-	public Bid(double amount){
-		this.amount = amount;
-	}
-
-	/*
-	@ManyToOne
-    @JoinColumn(name="id", nullable=false)
-    public Auction getAuction() { return this.auction; }
-	
-	public void setAuction(Auction auction) { this.auction = auction; }
-	*/
-	
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public User getUser() { return this.user; }
