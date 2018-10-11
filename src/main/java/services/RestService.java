@@ -1,7 +1,6 @@
 package services;
 
 import beans.AuctionDao;
-import beans.BidDao;
 import beans.UserDao;
 import entities.Auction;
 import entities.Bid;
@@ -11,7 +10,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,12 +22,6 @@ public class RestService extends Application {
 
     @Inject
     private UserDao userDao;
-
-    @Inject
-    private BidDao bidDao;
-
-    @Context
-    UriInfo uri;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,12 +68,10 @@ public class RestService extends Application {
 
         Bid bid = new Bid();
         bid.setUser(userDao.find(userID));
-        // bid.setAuction(auctionDao.find(id));
         bid.setAmount(amount);
         bid.setTime(LocalDateTime.now());
 
         auction.addBid(bid);
-        // bidDao.persist(bid);
         auctionDao.edit(auction);
 
         return getBids(id);
