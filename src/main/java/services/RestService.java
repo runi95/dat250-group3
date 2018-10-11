@@ -10,7 +10,6 @@ import entities.User;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.time.LocalDateTime;
@@ -29,6 +28,7 @@ public class RestService extends Application {
     private UserDao userDao;
 
     @GET
+    @Path("/auctions")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAuctions(){
         return Response.ok(auctionDao.findAll()).build();
@@ -121,7 +121,10 @@ public class RestService extends Application {
         auction.setSeller(userDao.find(userID));
         auction.setLastBid(0);
         ArrayList<Bid> bids = new ArrayList<>();
-        bids.add(new Bid(0));
+        Bid bid = new Bid();
+        bid.setAmount(0);
+        bid.setUser(userDao.find(userID));
+        bids.add(bid);
         auction.setBids(bids);
         auctionDao.persist(auction);
         return getMyAuctions(userID);
