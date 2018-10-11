@@ -38,6 +38,10 @@ public class Bid implements Serializable {
 
 	}
 
+	public Bid(double amount){
+		this.amount = amount;
+	}
+
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public Auction getAuction() { return this.auction; }

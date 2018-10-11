@@ -2,7 +2,9 @@ package entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -38,7 +40,7 @@ public class Auction implements Serializable {
 	
 	private Product product;
 	
-	private Set<Bid> bids = new HashSet<>();
+	private List<Bid> bids = new ArrayList<>();
 	
 	private User seller;
 
@@ -54,9 +56,9 @@ public class Auction implements Serializable {
 	public void setProduct(Product product) { this.product = product; }
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="auction")
-    public Set<Bid> getBids() { return this.bids; }
+    public List<Bid> getBids() { return this.bids; }
 	
-	public void setBids(Set<Bid> bids) { this.bids = bids; }
+	public void setBids(List<Bid> bids) { this.bids = bids; }
 	
 	public void addBid(Bid bid) { this.bids.add(bid); }
 	

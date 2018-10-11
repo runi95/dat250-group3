@@ -2,17 +2,17 @@
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
 	<!-- Connection Pool and Resource for Local Derby DB -->
-	<jdbc-connection-pool  connection-validation-method="auto-commit" datasource-classname="org.apache.derby.jdbc.ClientDataSource"  name="derby_net_db_g2018_02_appPool"  res-type="javax.sql.DataSource"  wrap-jdbc-objects="false">
+	<jdbc-connection-pool  connection-validation-method="auto-commit" datasource-classname="org.apache.derby.jdbc.ClientDataSource"  name="derby_net_db_g2018_03_appPool"  res-type="javax.sql.DataSource"  wrap-jdbc-objects="false">
 		<property name="serverName" value="localhost"/>
 		<property name="portNumber" value="1527"/>
-		<property name="databaseName" value="db_g2018_02"/>
+		<property name="databaseName" value="db_g2018_03"/>
 		<property name="User" value="admin"/>
 		<property name="Password" value="admin"/>
 		<property name="connectionAttributes" value=";create=true" />
-		<property name="URL" value="jdbc:derby://localhost:1527/db_g2018_02;create=true"/>
+		<property name="URL" value="jdbc:derby://localhost:1527/db_g2018_03;create=true"/>
 		<property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
 	</jdbc-connection-pool>
-	<jdbc-resource jndi-name="java:app/jdbc/db_g2018_02" pool-name="derby_net_db_g2018_02_appPool"/>
+	<jdbc-resource jndi-name="java:app/jdbc/db_g2018_03" pool-name="derby_net_db_g2018_03_appPool"/>
 
 	<jdbc-connection-pool
 			allow-non-component-callers="false" associate-with-thread="false"

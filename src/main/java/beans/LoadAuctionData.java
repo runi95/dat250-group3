@@ -45,19 +45,19 @@ public class LoadAuctionData {
 	public void createData() {
 		Bid bid = createBid(9.0);
 		bidDao.persist(bid);
-		
+
 		Bid bid2 = createBid(2.0);
 		bidDao.persist(bid2);
-		
+
 		Product product = createProduct();
 		productDao.persist(product);
-		
+
 		User seller = createUser();
 		userDao.persist(seller);
-		
+
 		User buyer = createUser();
 		userDao.persist(buyer);
-		
+
 		bid.setUser(buyer);
 		bid2.setUser(buyer);
 		Auction auction = new Auction();
@@ -68,7 +68,7 @@ public class LoadAuctionData {
 		auction.setLastBid(bid2.getAmount());
 		auction.setProduct(product);
 		auction.setSeller(seller);
-		
+
 		auctionDao.persist(auction);
 	}
 
