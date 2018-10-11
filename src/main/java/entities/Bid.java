@@ -30,7 +30,7 @@ public class Bid implements Serializable {
 	
 	private LocalDateTime time;
 	
-	private Auction auction;
+	// private Auction auction;
 	
 	private User user;
 
@@ -42,11 +42,13 @@ public class Bid implements Serializable {
 		this.amount = amount;
 	}
 
+	/*
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
     public Auction getAuction() { return this.auction; }
 	
 	public void setAuction(Auction auction) { this.auction = auction; }
+	*/
 	
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)

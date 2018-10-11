@@ -72,12 +72,18 @@ public class RestService extends Application {
     public Response placeBid(@PathParam("id") int id,
                              @HeaderParam("amount") double amount,
                              @HeaderParam("user-id") int userID) {
+        Auction auction = auctionDao.find(id);
+
         Bid bid = new Bid();
         bid.setUser(userDao.find(userID));
-        bid.setAuction(auctionDao.find(id));
+        // bid.setAuction(auctionDao.find(id));
         bid.setAmount(amount);
         bid.setTime(LocalDateTime.now());
-        bidDao.persist(bid);
+
+        auction.addBid(bid);
+        // bidDao.persist(bid);
+        auctionDao.edit(auction);
+
         return getBids(id);
     }
 }
