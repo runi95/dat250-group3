@@ -17,5 +17,5 @@ public interface SoapServer {
     Auction[] getOpenAuctions();
 
     @WebMethod
-    double bidOnAuction(int id, int amount);
+    double bidOnAuction(int id, int userID, int amount);
 }

@@ -60,7 +60,13 @@ public class Auction implements Serializable {
 	
 	public void setBids(List<Bid> bids) { this.bids = bids; }
 	
-	public void addBid(Bid bid) { this.bids.add(bid); }
+	public void addBid(Bid bid) {
+	    if (bid.getAmount() > lastBid) {
+	        setLastBid(bid.getAmount());
+        }
+
+	    this.bids.add(bid);
+	}
 	
 	public int getId() { return this.id; }
 	

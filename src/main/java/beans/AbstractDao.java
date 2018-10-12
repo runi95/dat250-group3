@@ -10,7 +10,7 @@ public abstract class AbstractDao<T> {
     private Class<T> entityClass;
     //bruk "derby" for lokal db
     //bruk "dat250psql"
-    @PersistenceContext(unitName = "derby")
+    @PersistenceContext(unitName = "dat250psql")
     protected EntityManager em;
 
     public AbstractDao(Class<T> entityClass){
