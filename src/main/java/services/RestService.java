@@ -1,10 +1,12 @@
 package services;
 
 import beans.AuctionDao;
+import beans.ProductDao;
 import beans.UserDao;
 import com.google.common.collect.Iterables;
 import entities.Auction;
 import entities.Bid;
+import entities.Product;
 import entities.User;
 
 
@@ -26,6 +28,9 @@ public class RestService extends Application {
 
     @Inject
     private UserDao userDao;
+
+    @Inject
+    private ProductDao productDao;
 
     @GET
     @Path("/auctions")
@@ -129,6 +134,26 @@ public class RestService extends Application {
         auctionDao.persist(auction);
         return getMyAuctions(userID);
     }
+
+    @POST
+    @Path("/product/create")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createProduct(@HeaderParam("name") String name) {
+        productDao.createProduct(name);
+        return Response.ok(Iterables.getLast(productDao.findAll())).build();
+    }
+
+    @POST
+    @Path("/auction/{id}/addproduct/{pid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addProductToAuction(@PathParam("id") int id, @PathParam("pid") int pid) {
+        Product p = productDao.find(pid);
+        auctionDao.addProduct(id, p);
+        return Response.ok(auctionDao.find(id)).build();
+    }
+
 
     @GET
     @Path("/auctions/self/{id}")

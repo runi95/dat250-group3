@@ -1,6 +1,7 @@
 package beans;
 
 import entities.Auction;
+import entities.Product;
 
 import javax.ejb.Stateless;
 
@@ -11,4 +12,9 @@ public class AuctionDao extends AbstractDao<Auction> {
         super(Auction.class);
     }
 
+    public void addProduct(int id, Product product) {
+        Auction a = find(id);
+        a.setProduct(product);
+        edit(a);
+    }
 }
