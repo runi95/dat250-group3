@@ -6,17 +6,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Semaphore;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -44,6 +36,9 @@ public class Auction implements Serializable {
 	
 	private User seller;
 
+	@Transient
+	private Semaphore semaphore = new Semaphore(1);
+
 	public Auction() {
 
 	}
@@ -61,9 +56,16 @@ public class Auction implements Serializable {
 	public void setBids(List<Bid> bids) { this.bids = bids; }
 	
 	public void addBid(Bid bid) {
-	    if (bid.getAmount() > lastBid) {
-	        setLastBid(bid.getAmount());
+	    try {
+            semaphore.acquire();
+            if (bid.getAmount() > lastBid) {
+                setLastBid(bid.getAmount());
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        semaphore.release();
 
 	    this.bids.add(bid);
 	}
