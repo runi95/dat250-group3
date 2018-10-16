@@ -3,6 +3,7 @@ package beans;
 import entities.User;
 
 import javax.ejb.Stateless;
+import java.util.HashSet;
 
 @Stateless
 public class UserDao extends AbstractDao<User>{
@@ -11,18 +12,6 @@ public class UserDao extends AbstractDao<User>{
 
     public UserDao() {
         super(User.class);
-    }
-
-    public void registerUser(String fName, String lName, String uName, String email, String pwd) {
-        User u = new User();
-        u.setName(fName);
-        u.setLastName(lName);
-        u.setUserName(uName);
-        u.setEmail(email);
-        u.setPassword(pwd);
-        u.setNumberOfRatings(0);
-        u.setSumOfAllRatings(0);
-        super.persist(u);
     }
 
     public boolean loginUser(String uName, String pwd) {
@@ -38,6 +27,20 @@ public class UserDao extends AbstractDao<User>{
     public void updateEmail(String uName, String email) {
         User u = super.find(uName);
         u.setEmail(email);
-        super.edit(u);
+        edit(u);
+    }
+
+    public void createUser(String uName, String fName, String lName, String pwd, String email) {
+        User u = new User();
+        u.setUserName(uName);
+        u.setName(fName);
+        u.setLastName(lName);
+        u.setPassword(pwd);
+        u.setEmail(email);
+        u.setComments(new HashSet<>());
+        u.setNumberOfRatings(0);
+        u.setSumOfAllRatings(0);
+
+        persist(u);
     }
 }

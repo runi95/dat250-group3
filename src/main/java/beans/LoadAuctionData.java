@@ -9,6 +9,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
+import com.google.common.collect.Iterables;
 import entities.Auction;
 import entities.Bid;
 import entities.Comment;
@@ -41,30 +42,33 @@ public class LoadAuctionData {
 	public void createData() {
 		List<Bid> bids = new ArrayList<>();
 
+		User seller = createUser("Pål", "Pål", "Pål", "Pål", "Pål");
+		userDao.persist(seller);
+		seller = Iterables.getLast(userDao.findAll());
+
+		User buyer = createUser("Per", "Per", "Per", "Per", "Per");
+		userDao.persist(buyer);
+		buyer = Iterables.getLast(userDao.findAll());
+
+		Product product = createProduct("Useful item", 10);
+		productDao.persist(product);
+		product = Iterables.getLast(productDao.findAll());
+
 		Bid bid = createBid(9.0);
+		bid.setUserID(buyer.getId());
 		bidDao.persist(bid);
 		bids.add(bid);
 
 		Bid bid2 = createBid(2.0);
+		bid2.setUserID(buyer.getId());
 		bidDao.persist(bid2);
 		bids.add(bid2);
 
-		User seller = createUser("Pål", "Pål", "Pål", "Pål", "Pål");
-		userDao.persist(seller);
-
-		User buyer = createUser("Per", "Per", "Per", "Per", "Per");
-		userDao.persist(buyer);
-
-		bid.setUser(buyer);
-		bid2.setUser(buyer);
-
-		Product product = createProduct("Useful item", 10);
-		Auction auction = createAuction(bids, product, seller);
-		productDao.persist(product);
+		Auction auction = createAuction(bids, product.getId(), seller);
 		auctionDao.persist(auction);
 	}
 
-	private Auction createAuction(List<Bid> bids, Product product, User seller){
+	private Auction createAuction(List<Bid> bids, int productID, User seller){
 		Auction auction = new Auction();
 		for (Bid b : bids){
 			auction.addBid(b);
@@ -72,10 +76,8 @@ public class LoadAuctionData {
 
 		auction.setPublishedTime(LocalDateTime.now());
 		auction.setEndTime(LocalDateTime.now().plusHours(1));
-
-		auction.setLastBid(bids.get(bids.size() - 1).getAmount());
-		auction.setProduct(product);
-		auction.setSeller(seller);
+		auction.setProductID(productID);
+		auction.setSellerID(seller.getId());
 
 		return auction;
 	}

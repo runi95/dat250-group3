@@ -74,10 +74,11 @@ public class RestService extends Application {
     public Response placeBid(@PathParam("id") int id,
                              @HeaderParam("amount") double amount,
                              @HeaderParam("user-id") int userID) {
+        auctionDao.addBid(userID);
         Auction auction = auctionDao.find(id);
 
         Bid bid = new Bid();
-        bid.setUser(userDao.find(userID));
+        bid.setUserID(userID);
         bid.setAmount(amount);
         bid.setTime(LocalDateTime.now());
 
@@ -96,17 +97,7 @@ public class RestService extends Application {
                                @HeaderParam("l_name") String lName,
                                @HeaderParam("pwd") String pwd,
                                @HeaderParam("email") String email) {
-        User u = new User();
-        u.setUserName(uName);
-        u.setName(fName);
-        u.setLastName(lName);
-        u.setPassword(pwd);
-        u.setEmail(email);
-        u.setComments(new HashSet<>());
-        u.setNumberOfRatings(0);
-        u.setSumOfAllRatings(0);
-
-        userDao.persist(u);
+        userDao.createUser(uName, fName, lName, pwd, email);
         return Response.ok(Iterables.getLast(userDao.findAll())).build();
     }
 
@@ -122,16 +113,7 @@ public class RestService extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createAuction(@HeaderParam("user_id") int userID) {
-        Auction auction = new Auction();
-        auction.setSeller(userDao.find(userID));
-        auction.setLastBid(0);
-        ArrayList<Bid> bids = new ArrayList<>();
-        Bid bid = new Bid();
-        bid.setAmount(0);
-        bid.setUser(userDao.find(userID));
-        bids.add(bid);
-        auction.setBids(bids);
-        auctionDao.persist(auction);
+        auctionDao.createAuction(userID);
         return getMyAuctions(userID);
     }
 
@@ -149,8 +131,7 @@ public class RestService extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addProductToAuction(@PathParam("id") int id, @PathParam("pid") int pid) {
-        Product p = productDao.find(pid);
-        auctionDao.addProduct(id, p);
+        auctionDao.addProduct(id, pid);
         return Response.ok(auctionDao.find(id)).build();
     }
 
@@ -161,7 +142,7 @@ public class RestService extends Application {
     public Response getMyAuctions(@PathParam("id") int id) {
         List<Auction> auctions = new ArrayList<>();
         for (Auction auction : auctionDao.findAll()) {
-            if (auction.getSeller().getId() == id) {
+            if (auction.getSellerID() == id) {
                 auctions.add(auction);
             }
         }

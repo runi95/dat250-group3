@@ -28,7 +28,7 @@ public class Product implements Serializable {
 	
 	private Boolean isPublished;
 	
-	private Auction auction;
+	private int auctionID;
 	
 	private Set<Comment> comments;
 	
@@ -41,9 +41,9 @@ public class Product implements Serializable {
 	}
 
 	@OneToOne(mappedBy="product")
-    public Auction getAuction() { return this.auction; }
+    public int getAuctionID() { return this.auctionID; }
 	
-	public void setAuction(Auction auction) { this.auction = auction; }
+	public void setAuctionID(int auctionID) { this.auctionID = auctionID; }
 	
 	@OneToMany(mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }

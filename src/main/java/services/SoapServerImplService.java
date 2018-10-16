@@ -32,7 +32,7 @@ public class SoapServerImplService implements SoapServer {
         Auction auction = auctionDao.find(id);
 
         Bid bid = new Bid();
-        bid.setUser(userDao.find(userID));
+        bid.setUserID(userID);
         bid.setAmount(amount);
         bid.setTime(LocalDateTime.now());
 

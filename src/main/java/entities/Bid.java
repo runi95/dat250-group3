@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,9 +30,8 @@ public class Bid implements Serializable {
 	private Double amount;
 	
 	private LocalDateTime time;
-	
 
-	private User user;
+	private int userID;
 
 	public Bid() {
 
@@ -39,9 +39,9 @@ public class Bid implements Serializable {
 
 	@ManyToOne
     @JoinColumn(name="id", nullable=false)
-    public User getUser() { return this.user; }
+    public int getUserID() { return this.userID; }
 	
-	public void setUser(User user) { this.user = user; }
+	public void setUserID(int userID) { this.userID = userID; }
 	
 	public int getId() { return this.id; }
 	
@@ -54,4 +54,5 @@ public class Bid implements Serializable {
 	public LocalDateTime getTime() { return this.time; }
 	
 	public void setTime(LocalDateTime time) { this.time = time; }
+
 }

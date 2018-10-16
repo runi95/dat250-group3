@@ -30,11 +30,11 @@ public class Auction implements Serializable {
 	
 	private LocalDateTime published;
 	
-	private Product product;
+	private int productID;
 	
-	private List<Bid> bids = new ArrayList<>();
+	private List<Bid> bids;
 	
-	private User seller;
+	private int sellerID;
 
 	@Transient
 	private Semaphore semaphore = new Semaphore(1);
@@ -44,11 +44,10 @@ public class Auction implements Serializable {
 	}
 
 	@OneToOne(optional=false)
-    @JoinColumn(
-        name="id", unique=true, nullable=false)
-    public Product getProduct() { return this.product; }
+    @JoinColumn(name="id", unique=true, nullable=false)
+    public int getProductID() { return this.productID; }
 	
-	public void setProduct(Product product) { this.product = product; }
+	public void setProductID(int productID) { this.productID = productID; }
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="auction")
     public List<Bid> getBids() { return this.bids; }
@@ -56,18 +55,25 @@ public class Auction implements Serializable {
 	public void setBids(List<Bid> bids) { this.bids = bids; }
 	
 	public void addBid(Bid bid) {
-	    try {
-            semaphore.acquire();
-            if (bid.getAmount() > lastBid) {
-                setLastBid(bid.getAmount());
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+	    if (bids == null){
+	        bids = new ArrayList<>();
+	        setLastBid(0);
+	    }
 
-        semaphore.release();
+//	    try {
+//            semaphore.acquire();
+//            if (bid.getAmount() > lastBid) {
+//                setLastBid(bid.getAmount());
+//            }
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        semaphore.release();
 
 	    this.bids.add(bid);
+
+	    if (bid.getAmount() > getLastBid()) setLastBid(bid.getAmount());
 	}
 	
 	public int getId() { return this.id; }
@@ -84,11 +90,11 @@ public class Auction implements Serializable {
 	
 	public void setPublishedTime(LocalDateTime published) { this.published = published; }
 
-	public User getSeller() {
-		return seller;
+	public int getSellerID() {
+		return sellerID;
 	}
 
-	public void setSeller(User seller) {
-		this.seller = seller;
+	public void setSellerID(int seller) {
+		this.sellerID = seller;
 	}
 }
