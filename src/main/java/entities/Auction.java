@@ -32,7 +32,7 @@ public class Auction implements Serializable {
 	
 	private Product product;
 	
-	private List<Bid> bids = new ArrayList<>();
+	private List<Bid> bids;
 	
 	private User seller;
 
@@ -56,16 +56,21 @@ public class Auction implements Serializable {
 	public void setBids(List<Bid> bids) { this.bids = bids; }
 	
 	public void addBid(Bid bid) {
-	    try {
-            semaphore.acquire();
-            if (bid.getAmount() > lastBid) {
-                setLastBid(bid.getAmount());
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+		if (bids == null) {
+			lastBid = 0.0;
+			bids = new ArrayList<>();
+		}
 
-        semaphore.release();
+//	    try {
+//            semaphore.acquire();
+//            if (bid.getAmount() > lastBid) {
+//                setLastBid(bid.getAmount());
+//            }
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        semaphore.release();
 
 	    this.bids.add(bid);
 	}
