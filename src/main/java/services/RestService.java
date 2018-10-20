@@ -1,13 +1,12 @@
 package services;
 
 import beans.AuctionDao;
+import beans.BidDao;
 import beans.ProductDao;
 import beans.UserDao;
 import com.google.common.collect.Iterables;
 import entities.Auction;
 import entities.Bid;
-import entities.Product;
-import entities.User;
 
 
 import javax.ejb.Stateless;
@@ -16,7 +15,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Path("")
@@ -31,6 +29,9 @@ public class RestService extends Application {
 
     @Inject
     private ProductDao productDao;
+
+    @Inject
+    private BidDao bidDao;
 
     @GET
     @Path("/auctions")
@@ -50,7 +51,9 @@ public class RestService extends Application {
     @Path("/auctions/{id}/bids")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBids(@PathParam("id") int id){
-        return Response.ok(auctionDao.find(id).getBids()).build();
+        Auction auction = auctionDao.find(id);
+
+        return Response.ok(bidDao.getBidsByAuctionID(auction.getBidIDs())).build();
     }
 
     @GET
@@ -58,13 +61,14 @@ public class RestService extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBid(@PathParam("id") int id, @PathParam("bid") int bid) {
         Response res = null;
-        List<Bid> bids = auctionDao.find(id).getBids();
+        List<Bid> bids = bidDao.getBidsByAuctionID(auctionDao.find(id).getBidIDs());
         for (Bid b : bids) {
             if (b.getId() == bid)  {
                 res = Response.ok(b).build();
             }
         }
         return res;
+        //return Response.ok(bidDao.getbid(bid)).build();
     }
 
     @POST
@@ -74,15 +78,10 @@ public class RestService extends Application {
     public Response placeBid(@PathParam("id") int id,
                              @HeaderParam("amount") double amount,
                              @HeaderParam("user-id") int userID) {
-        auctionDao.addBid(userID);
+
         Auction auction = auctionDao.find(id);
-
-        Bid bid = new Bid();
-        bid.setUserID(userID);
-        bid.setAmount(amount);
-        bid.setTime(LocalDateTime.now());
-
-        auction.addBid(bid);
+        int bidID = bidDao.getBidID(amount, userID);
+        auction.addBid(bidID);
         auctionDao.edit(auction);
 
         return getBids(id);

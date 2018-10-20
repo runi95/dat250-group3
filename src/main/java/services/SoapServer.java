@@ -10,8 +10,8 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface SoapServer {
 
-    @WebMethod
-    Auction getAuctionById(int id);
+//    @WebMethod
+//    Auction getAuctionById(int id);
 
     @WebMethod
     Auction[] getOpenAuctions();

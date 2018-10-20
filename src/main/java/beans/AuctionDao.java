@@ -35,16 +35,13 @@ public class AuctionDao extends AbstractDao<Auction> {
         Auction auction = new Auction();
         auction.setSellerID(user);
         auction.setLastBid(0);
-        ArrayList<Bid> bids = new ArrayList<>();
-        Bid bid = new Bid();
-        bid.setAmount(0);
-        bid.setUserID(user);
-        bids.add(bid);
-        auction.setBids(bids);
+//        List<Integer> bids = new ArrayList<>();
+//        Bid bid = new Bid();
+//        bid.setAmount(0);
+//        bid.setUserID(user);
+//        bids.add(bid);
+//        auction.setBidIDs(bids);
         persist(auction);
     }
 
-    public void addBid(int userID) {
-
-    }
 }

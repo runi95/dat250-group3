@@ -19,9 +19,9 @@ public class SoapServerImplService implements SoapServer {
     @Inject
     AuctionDao auctionDao;
 
-    public Auction getAuctionById(int id) {
-        return auctionDao.find(id);
-    }
+//    public Auction getAuctionById(int id) {
+//        return auctionDao.find(id);
+//    }
 
     public Auction[] getOpenAuctions() {
         List<Auction> openAuctions = auctionDao.findAllOpenAuctions();
@@ -36,7 +36,7 @@ public class SoapServerImplService implements SoapServer {
         bid.setAmount(amount);
         bid.setTime(LocalDateTime.now());
 
-        auction.addBid(bid);
+        auction.addBid(bid.getId());
         auctionDao.edit(auction);
 
         return auction.getLastBid();

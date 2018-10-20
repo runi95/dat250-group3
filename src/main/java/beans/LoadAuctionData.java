@@ -71,7 +71,7 @@ public class LoadAuctionData {
 	private Auction createAuction(List<Bid> bids, int productID, User seller){
 		Auction auction = new Auction();
 		for (Bid b : bids){
-			auction.addBid(b);
+			auction.addBid(b.getId());
 		}
 
 		auction.setPublishedTime(LocalDateTime.now());

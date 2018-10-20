@@ -3,9 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Semaphore;
 
 import javax.persistence.*;
@@ -32,7 +30,7 @@ public class Auction implements Serializable {
 	
 	private int productID;
 	
-	private List<Bid> bids;
+	private List<Integer> bidIDs;
 	
 	private int sellerID;
 
@@ -50,13 +48,13 @@ public class Auction implements Serializable {
 	public void setProductID(int productID) { this.productID = productID; }
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="auction")
-    public List<Bid> getBids() { return this.bids; }
+    public List<Integer> getBidIDs() { return this.bidIDs; }
 	
-	public void setBids(List<Bid> bids) { this.bids = bids; }
+	public void setBidIDs(List<Integer> bids) { this.bidIDs = bids; }
 	
-	public void addBid(Bid bid) {
-	    if (bids == null){
-	        bids = new ArrayList<>();
+	public void addBid(int bid) {
+	    if (bidIDs == null){
+	        bidIDs = new ArrayList<>();
 	        setLastBid(0);
 	    }
 
@@ -71,9 +69,9 @@ public class Auction implements Serializable {
 //
 //        semaphore.release();
 
-	    this.bids.add(bid);
+	    this.bidIDs.add(bid);
 
-	    if (bid.getAmount() > getLastBid()) setLastBid(bid.getAmount());
+	    //if (bid.getAmount() > getLastBid()) setLastBid(bid.getAmount());
 	}
 	
 	public int getId() { return this.id; }
