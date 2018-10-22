@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Semaphore;
 
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,7 +23,7 @@ public class Auction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	private Double lastBid;
 	
 	private LocalDateTime endTime;
