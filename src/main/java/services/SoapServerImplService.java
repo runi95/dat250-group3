@@ -1,7 +1,7 @@
 package services;
 
-import beans.AuctionDao;
-import beans.UserDao;
+import dao.AuctionDao;
+import dao.UserDao;
 import entities.Auction;
 import entities.Bid;
 

@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
-import javax.enterprise.context.RequestScoped;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
