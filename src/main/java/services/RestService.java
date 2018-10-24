@@ -1,6 +1,7 @@
 package services;
 
 import beans.AuctionDao;
+import beans.BidDao;
 import beans.ProductDao;
 import beans.UserDao;
 import com.google.common.collect.Iterables;
@@ -32,6 +33,9 @@ public class RestService extends Application {
     @Inject
     private ProductDao productDao;
 
+    @Inject
+    private BidDao bidDao;
+
     @GET
     @Path("/auctions")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,14 +61,7 @@ public class RestService extends Application {
     @Path("/auctions/{id}/bids/{bid}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBid(@PathParam("id") int id, @PathParam("bid") int bid) {
-        Response res = null;
-        List<Bid> bids = auctionDao.find(id).getBids();
-        for (Bid b : bids) {
-            if (b.getId() == bid)  {
-                res = Response.ok(b).build();
-            }
-        }
-        return res;
+        return Response.ok(bidDao.find(bid)).build();
     }
 
     @POST

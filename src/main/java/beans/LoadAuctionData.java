@@ -58,6 +58,9 @@ public class LoadAuctionData {
 		bid.setUser(buyer);
 		bid2.setUser(buyer);
 
+		bidDao.edit(bid);
+		bidDao.edit(bid2);
+
 		Product product = createProduct("Useful item", 10);
 		Auction auction = createAuction(bids, product, seller);
 		productDao.persist(product);
