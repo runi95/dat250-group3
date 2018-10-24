@@ -10,6 +10,11 @@ import javax.jws.WebService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * wsgen command
+ * wsgen -verbose -keep -wsdl -servicename "{http://localhost/}ts" -portname "{http://localhost/}9876" -s ../../src/main/java/services -d ../../target/classes/services -cp . services.SoapServerImplService
+ */
+
 @WebService(endpointInterface = "services.SoapServer")
 public class SoapServerImplService implements SoapServer {
 
