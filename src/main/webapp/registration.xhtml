@@ -13,39 +13,71 @@
     <h:body>
 
         <h:form>
-            First name: <h:inputText value="#{name}"
-                                     required="true"
-                                     id="first_name"
-                                     requiredMessage="First name is required."/>
 
-            <h:message for="first_name" styleClass="error"/><br/><br/>
+            <f:event listener="#{registerView.validatePassword}"
+                     type="postValidate" />
 
-            Last name: <h:inputText value="#{lastName}"
-                                    required="true"
-                                    id="last_name"
-                                    requiredMessage="Last name is required."/>
+            <h:panelGrid columns="2">
 
-            <h:message for="last_name" styleClass="error"/><br/><br/>
+                First name: <h:inputText value="#{registerView.name}"
+                                         required="true"
+                                         id="first_name"
+                                         requiredMessage="First name is required."
+                                         maxlength="30"/>
 
-            User name: <h:inputText value="#{userName}"
-                                    required="true"
-                                    id="user_name"
-                                    requiredMessage="User name is required."/>
+                <h:message for="first_name" styleClass="error"/><br/><br/>
 
-            <h:message for="user_name" styleClass="error"/><br/><br/>
+                Last name: <h:inputText value="#{registerView.lastName}"
+                                        required="true"
+                                        id="last_name"
+                                        requiredMessage="Last name is required."/>
 
-            Password: <h:inputSecret value="#{password}"
-                                     required="true"
-                                     id="password"
-                                     requiredMessage="Password is required."/>
+                <h:message for="last_name" styleClass="error"/><br/><br/>
 
-            <h:message for="password" styleClass="error"/><br/><br/>
+                User name: <h:inputText value="#{registerView.userName}"
+                                        required="true"
+                                        id="user_name"
+                                        requiredMessage="User name is required."/>
 
-            Email address: <h:inputText value="#{email}"/><br/><br/>
+                <h:message for="user_name" styleClass="error"/><br/><br/>
 
-            <h:commandButton value="Submit"/>
+
+
+                Email address: <h:inputText value="#{registerView.email}"
+                                         required="true"
+                                         id="email"
+                                         requiredMessage="Email address is required. #{registerView.email} suidfvbdsc"  >
+                                         <f:validator validatorId="emailValidator"/>
+                </h:inputText>
+
+                <h:message for="email" styleClass="error"/><br/><br/>
+
+                Password: <h:inputSecret value="#{registerView.password}"
+                                         required="true"
+                                         id="password"
+                                         requiredMessage="Password is required."
+                                         validatorMessage="Password must contain atleast one lowercase character,
+                                         uppercase character, a digit and it's length must be between 6 and 20 characters">
+                                         <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"/>
+                </h:inputSecret>
+
+                <h:message for="password" styleClass="error"/><br/><br/>
+
+                Confirm password:<h:inputSecret id="confirmpassword"
+                                                value="#{registerView.confirmPassword}" required="true"
+                                                requiredMessage="Please confirm your password"/>
+
+                <h:message for="confirmpassword" styleClass="error"/><br/><br/>
+
+                <h:commandButton action="#{registerView.register}" value="Register"/>
+
+            </h:panelGrid>
 
         </h:form>
+
+        <br/><br/>
+
+        <h:link value="I already have an account" outcome="login" />
 
     </h:body>
 

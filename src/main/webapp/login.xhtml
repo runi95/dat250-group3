@@ -16,33 +16,32 @@
         <h:form>
 
             <br/>
-            <h:inputText value="#{userBean.name}"
-                         label="First name"
-                         required="true"
-                         a:placeholder="Username"
-                         id="first_name"
-                         requiredMessage="Your first name is required."/>
+            <h:panelGrid columns="2">
+                <h:inputText value="#{loginView.email}"
+                             label="Email"
+                             required="true"
+                             a:placeholder="Email"
+                             id="email"
+                             requiredMessage="Your email address is required."/>
 
-            <h:message for="first_name" styleClass="error"/><br/><br/>
+                <h:message for="email" styleClass="error"/><br/><br/>
 
-            <h:inputSecret value="#{userBean.password}"
-                           label="Last name"
-                           required="true"
-                           a:placeholder="Password"
-                           id="password" requiredMessage="Your password is required."/>
+                <h:inputSecret value="#{loginView.password}"
+                               label="Last name"
+                               required="true"
+                               a:placeholder="Password"
+                               id="password" requiredMessage="Your password is required."/>
 
-            <h:message for="password" styleClass="error"/><br/><br/>
+                <h:message for="password" styleClass="error"/><br/><br/>
 
-            <h:commandButton value="Submit" action="loggedin"/><br/><br/>
+                <h:commandButton action="#{loginView.login}" value="Login" /><br/><br/>
 
-            <h1>Dont't have an account? Create one, da vell!</h1><br/>
+            </h:panelGrid>
 
         </h:form>
 
-        <h:form>
-            <h:commandButton value="Create Account"
-                             action="registration"/>
-        </h:form>
+        <h:link value="Create new account" outcome="registration" />
+
 
 
     </h:body>
