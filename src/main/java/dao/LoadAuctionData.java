@@ -57,10 +57,10 @@ public class LoadAuctionData {
 		bidDao.persist(bid2);
 		bids.add(bid2);
 
-		User seller = createUser("Pål", "Pål", "Pål", "Pål", "Pål");
+		User seller = createUser("Pål", "Pedersen", "Pål", "Pål", "Pål@gmail.com");
 		userDao.persist(seller);
 
-		User buyer = createUser("Per", "Per", "Per", "Per", "Per");
+		User buyer = createUser("Kari", "Kristiansen", "Kari", "Kari", "Kari@gmail.com");
 		userDao.persist(buyer);
 
 		bid.setUser(buyer);
