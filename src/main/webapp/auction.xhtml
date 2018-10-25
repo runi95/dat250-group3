@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:body>
+    <ui:composition template="./master.xhtml">
+        <ui:define name="content">
+            <div class="parent">
+                <div class="child">
+                    <h2>
+                        Welcome to the auction page!
+                    </h2>
+                    <h3>#{auctionView.auction.product.name}</h3>
+                    <img src="data:image/png;base64, #{auctionView.auction.product.pictureAsBase64}"/>
+                    <div>
+                        <small>#{a.seller.name} #{auctionView.auction.seller.lastName}, <a
+                                href="mailto:#{auctionView.auction.seller.email}?Subject=#{auctionView.auction.product.name}"
+                                target="_top">mail</a></small>
+                    </div>
+                    <div>
+                        Current Bid: #{a.lastBid}
+                    </div>
+                    <div>
+                        <h:form>
+                            <div class="form-group">
+                                <h:inputText value="#{auctionView.bid}" required="true" id="bid" name="bid"></h:inputText>
+                                <h:commandButton action="#{auctionView.placeBid}" value="Place Bid" styleClass="btn btn-primary"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
