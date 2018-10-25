@@ -9,7 +9,7 @@ import java.net.URLEncoder;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import beans.AuctionDao;
+import dao.AuctionDao;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,7 +1,7 @@
 package jms;
 
-import beans.AuctionDao;
-import beans.BidDao;
+import dao.AuctionDao;
+import dao.BidDao;
 import entities.Auction;
 import entities.Bid;
 import entities.Product;
