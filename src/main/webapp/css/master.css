@@ -31,3 +31,7 @@
 .input-opaque {
     opacity: 0.9;
 }
+
+.btn-login {
+    float: right;
+}
