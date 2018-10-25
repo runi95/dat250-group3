@@ -21,6 +21,14 @@ public class AuctionDao extends AbstractDao<Auction> {
         edit(a);
     }
 
+    public List<Auction> findAllPublishedAuctions() {
+        List<Auction> auctions = findAll();
+        List<Auction> publishedAuctions = new ArrayList<>();
+
+        auctions.forEach(x -> {if (x.getProduct().isPublished()) publishedAuctions.add(x);});
+        return publishedAuctions;
+    }
+
     public List<Auction> findAllOpenAuctions() {
         List<Auction> auctions = findAll();
         List<Auction> filteredAuctionsBecauseWeDontWantToWriteQueries = new ArrayList<>();
