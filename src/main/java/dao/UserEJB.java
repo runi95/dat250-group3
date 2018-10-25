@@ -12,10 +12,16 @@ import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
 @Stateless
-public class UserEJB {
+public class UserEJB extends AbstractDao<User> {
 
+    /*
     @PersistenceContext(unitName = "dat250psql")
     private EntityManager em;
+    */
+
+    public UserEJB() {
+        super(User.class);
+    }
 
     public User createUser(User user) {
         try {

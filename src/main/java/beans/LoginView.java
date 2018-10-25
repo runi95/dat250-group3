@@ -52,8 +52,8 @@ public class LoginView implements Serializable {
         }
         catch (ServletException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed!", null));
-            //return "login";
-            return "loggedin";
+
+            return "login";
         }
 
         Principal principal = request.getUserPrincipal();
@@ -67,11 +67,11 @@ public class LoginView implements Serializable {
         sessionMap.put("User", user);
 
         if (request.isUserInRole("users")) {
-            return "/user/privatepage?faces-redirect=true";
+            //return "/user/privatepage?faces-redirect=true";
+            return "auctions";
         }
         else {
-            //return "login";
-            return "loggedin";
+            return "auctions";
         }
     }
 
