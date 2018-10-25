@@ -1,5 +1,6 @@
 package beans;
 
+import dao.AuctionDao;
 import entities.Auction;
 import entities.Bid;
 import entities.Product;
@@ -21,7 +22,8 @@ public class UserNumberBean implements Serializable {
     AuctionDao auctionDao;
 
     public UserNumberBean() {
-        User seller = new User();
+        User seller = new User()
+                ;
         seller.setName("Kari");
         seller.setLastName("Nordmann");
 
