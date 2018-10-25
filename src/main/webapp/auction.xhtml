@@ -11,10 +11,19 @@
         <ui:define name="content">
             <div class="parent">
                 <div class="child">
+
+                    <br/>
+
+                    <h:form>
+                        <h:commandButton action="#{loginView.logout}" value="Log out" />
+                    </h:form>
+
+                    <br/>
+
                     <h2>
                         Welcome to the auction page!
                     </h2>
-                    <h3>#{auctionView.auction.product.name}</h3>
+                    <h3> Product: #{auctionView.auction.product.name}</h3>
                     <img src="data:image/png;base64, #{auctionView.auction.product.pictureAsBase64}"/>
                     <div>
                         <small>#{auctionView.auction.seller.name} #{auctionView.auction.seller.lastName}, <a
@@ -22,7 +31,7 @@
                                 target="_top">mail</a></small>
                     </div>
                     <div>
-                        Current Bid: #{auctionView.auction.highestBid.amount}
+                        Current Bid: #{auctionView.auction.highestBid.amount} #{a.highestBid.user.name} #{a.highestBid.user.lastName}
                     </div>
                     <div>
                         <h:form>
@@ -32,8 +41,13 @@
                             </div>
                         </h:form>
                     </div>
+                    <br/><br/><br/>
+
+                    <h:link value="Take me back to the auctions ffs" outcome="auctions" />
+
                 </div>
             </div>
+
         </ui:define>
     </ui:composition>
 </h:body>

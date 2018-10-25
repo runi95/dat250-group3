@@ -11,12 +11,21 @@
         <ui:define name="content">
             <div class="parent">
                 <div class="child">
+
+                    <br/>
+
+                    <h:form>
+                        <h:commandButton action="#{loginView.logout}" value="Log out" />
+                    </h:form>
+
+                    <br/>
+
                     <h2>
                         Welcome to the auction page!
                     </h2>
                     <h:link value="Create New Auction" outcome="newauction" styleClass="btn btn-primary" />
                     <ui:repeat var="a" value="#{auctionView.openAuctions}">
-                        <h3><h:form><h:commandLink action="#{auctionView.chooseAuction(a.id)}" value="#{a.product.name}" /></h:form></h3>
+                        <h3><h:form> Product: <h:commandLink action="#{auctionView.chooseAuction(a.id)}" value="#{a.product.name}" /></h:form></h3>
                         <img src="data:image/png;base64, #{a.product.pictureAsBase64}"/>
                         <div>
                             <small>#{a.seller.name} #{a.seller.lastName}, <a
@@ -24,12 +33,15 @@
                                     target="_top">mail</a></small>
                         </div>
                         <div>
-                            Current Bid: #{a.highestBid.amount}
+                            Current Bid: #{a.highestBid.amount} #{a.highestBid.user.name} #{a.highestBid.user.lastName}
                         </div>
+
+                        <br/><br/><br/>
 
                     </ui:repeat>
                 </div>
             </div>
+
         </ui:define>
     </ui:composition>
 </h:body>
