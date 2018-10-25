@@ -1,5 +1,7 @@
 package entities; 
  
+import org.checkerframework.checker.units.qual.C;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,20 +20,11 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name="email", nullable=false)
-    private String email;
-
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    @Column(name="email", nullable=false, unique = true)
+    private String email;
 
     @Column(name="name", nullable=false, length=30)
     private String name;
@@ -45,12 +38,22 @@ public class User implements Serializable {
     @Column(name="password", nullable=false, length=64)
     private String password;
 
+    @Column(name = "rating")
+    private double rating;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     private double sumOfAllRatings;
 
     private int numberOfRatings;
 
     private Set<Comment> comments;
-    //private Set<Auction> auctions;
 
     public User() {
 
@@ -62,18 +65,11 @@ public class User implements Serializable {
     	this.userName = userName;
     	this.password = password;
     	this.email = email;
-    	this.sumOfAllRatings = 0.0;
-    	this.numberOfRatings = 0;
     	this.comments = new HashSet<Comment>();
-    	//this.auctions = new HashSet<Auction>();
     }
 
     @OneToMany(mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
-    
-    //@OneToMany(cascade=CascadeType.ALL, mappedBy="product")
-    //public Set<Auction> getAuctions() { return this.auctions; }
-
     
     public int getNumberOfRatings() { 
         return numberOfRatings; 
@@ -82,10 +78,14 @@ public class User implements Serializable {
     public void addRating(double rating) { 
         this.sumOfAllRatings += rating; 
         this.numberOfRatings += 1; 
-    } 
+    }
 
-    public double getRank() { 
-        return this.sumOfAllRatings / this.numberOfRatings; 
+    public void setRating(){
+        this.rating = this.sumOfAllRatings / this.numberOfRatings;;
+    }
+
+    public double getRating() {
+        return rating;
     } 
 
 	public void setName(String name) {
@@ -119,10 +119,6 @@ public class User implements Serializable {
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
-
-	/*public void setAuctions(Set<Auction> auctions) {
-		this.auctions = auctions;
-	}*/
 
 	public String getName() { 
         return name; 
