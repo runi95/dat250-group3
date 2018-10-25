@@ -14,8 +14,9 @@
                     <h2>
                         Welcome to the auction page!
                     </h2>
+                    <h:link value="Create New Auction" outcome="newauction" styleClass="btn btn-primary" />
                     <ui:repeat var="a" value="#{auctionView.openAuctions}">
-                        <h3><h:form><h:commandLink action="#{auctionView.chooseAuction}" value="#{a.product.name}" /></h:form></h3>
+                        <h3><h:form><h:commandLink action="#{auctionView.chooseAuction(a.id)}" value="#{a.product.name}" /></h:form></h3>
                         <img src="data:image/png;base64, #{a.product.pictureAsBase64}"/>
                         <div>
                             <small>#{a.seller.name} #{a.seller.lastName}, <a
