@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:body>
+    <ui:composition template="./master.xhtml">
+        <ui:define name="content">
+            <div class="parent">
+                <div class="child">
+                    <h2>
+                        Welcome to the new auction page!
+                    </h2>
+                    <h:form enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <h:inputText value="#{createAuctionView.title}"
+                                         required="true"
+                                         id="title"
+                                         requiredMessage="Title is required."
+                                         maxlength="255" />
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                Picture
+                            </div>
+                            <h:inputFile value="#{createAuctionView.file}"
+                                         required="true"
+                                         id="file"
+                                         requiredMessage="Picture is required." />
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <h:inputText value="#{createAuctionView.endTime}"
+                                         required="true"
+                                         id="endDate"
+                                         requiredMessage="End Date is required.">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:inputText>
+                        </div>
+
+                        <h:commandButton action="#{createAuctionView.createNewAuction}" value="Create Auction"/>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
