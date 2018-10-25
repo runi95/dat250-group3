@@ -114,23 +114,23 @@ public class RestService extends Application {
         return Response.ok(userDao.find(id)).build();
     }
 
-    @POST
-    @Path("/auctions/create")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createAuction(@HeaderParam("user_id") int userID) {
-        Auction auction = new Auction();
-        auction.setSeller(userDao.find(userID));
-        auction.setLastBid(0);
-        ArrayList<Bid> bids = new ArrayList<>();
-        Bid bid = new Bid();
-        bid.setAmount(0);
-        bid.setUser(userDao.find(userID));
-        bids.add(bid);
-        auction.setBids(bids);
-        auctionDao.persist(auction);
-        return getMyAuctions(userID);
-    }
+//    @POST
+//    @Path("/auctions/create")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Response createAuction(@HeaderParam("user_id") int userID) {
+//        Auction auction = new Auction();
+//        auction.setSeller(userDao.find(userID));
+//        auction.setHighestBid(0);
+//        ArrayList<Bid> bids = new ArrayList<>();
+//        Bid bid = new Bid();
+//        bid.setAmount(0);
+//        bid.setUser(userDao.find(userID));
+//        bids.add(bid);
+//        auction.setBids(bids);
+//        auctionDao.persist(auction);
+//        return getMyAuctions(userID);
+//    }
 
     @POST
     @Path("/product/create")

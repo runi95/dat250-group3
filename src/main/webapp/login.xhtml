@@ -17,6 +17,7 @@
 
             <br/>
             <h:panelGrid columns="2">
+                <h:outputLabel for="email">Email address:</h:outputLabel>
                 <h:inputText value="#{loginView.email}"
                              label="Email"
                              required="true"
@@ -24,17 +25,19 @@
                              id="email"
                              requiredMessage="Your email address is required."/>
 
-                <h:message for="email" styleClass="error"/><br/><br/>
+                <h:message for="email" styleClass="error"/><br/>
 
+                <h:outputLabel for="password">Password:</h:outputLabel>
                 <h:inputSecret value="#{loginView.password}"
                                label="Last name"
                                required="true"
                                a:placeholder="Password"
-                               id="password" requiredMessage="Your password is required."/>
+                               id="password"
+                               requiredMessage="Your password is required."/>
 
-                <h:message for="password" styleClass="error"/><br/><br/>
+                <h:message for="password" styleClass="error"/><br/>
 
-                <h:commandButton action="#{loginView.login}" value="Login" /><br/><br/>
+                <h:commandButton action="#{loginView.login}" value="Login" />
 
             </h:panelGrid>
 
