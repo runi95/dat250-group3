@@ -7,46 +7,46 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <h:head>
-        <title>Log In</title>
-    </h:head>
+<h:head>
+    <title>Log In</title>
+</h:head>
 
-    <h:body>
+<h:body>
+    <ui:composition template="./master.xhtml">
+        <ui:define name="content">
+            <div class="parent">
+                <div class="child">
+                    <div class="login-box">
+                        <h:form>
+                            <div class="form-group">
+                                <h:inputText value="#{loginView.email}"
+                                             label="Email"
+                                             required="true"
+                                             a:placeholder="Email"
+                                             id="email"
+                                             requiredMessage="Your email address is required."
+                                             styleClass="form-control input-opaque"/>
+                                <h:message for="email" styleClass="error"/><br/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputSecret value="#{loginView.password}"
+                                               label="Last name"
+                                               required="true"
+                                               a:placeholder="Password"
+                                               id="password"
+                                               requiredMessage="Your password is required."
+                                               styleClass="form-control input-opaque"/>
+                                <h:message for="password" styleClass="error"/><br/>
+                            </div>
 
-        <h:form>
-
-            <br/>
-            <h:panelGrid columns="2">
-                <h:outputLabel for="email">Email address:</h:outputLabel>
-                <h:inputText value="#{loginView.email}"
-                             label="Email"
-                             required="true"
-                             a:placeholder="Email"
-                             id="email"
-                             requiredMessage="Your email address is required."/>
-
-                <h:message for="email" styleClass="error"/><br/>
-
-                <h:outputLabel for="password">Password:</h:outputLabel>
-                <h:inputSecret value="#{loginView.password}"
-                               label="Last name"
-                               required="true"
-                               a:placeholder="Password"
-                               id="password"
-                               requiredMessage="Your password is required."/>
-
-                <h:message for="password" styleClass="error"/><br/>
-
-                <h:commandButton action="#{loginView.login}" value="Login" />
-
-            </h:panelGrid>
-
-        </h:form>
-
-        <h:link value="Create new account" outcome="registration" />
-
-
-
-    </h:body>
-
+                            <h:commandButton action="#{loginView.login}" value="Login"
+                                             styleClass="btn btn-primary btn-login"/>
+                        </h:form>
+                        <h:link value="Create new account" outcome="registration"/>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>
