@@ -1,4 +1,4 @@
-package beans;
+package dao;
 
 import entities.Auction;
 import entities.Product;

@@ -1,9 +1,9 @@
 package services;
 
-import beans.AuctionDao;
-import beans.BidDao;
-import beans.ProductDao;
-import beans.UserDao;
+import dao.AuctionDao;
+import dao.BidDao;
+import dao.ProductDao;
+import dao.UserDao;
 import com.google.common.collect.Iterables;
 import entities.Auction;
 import entities.Bid;

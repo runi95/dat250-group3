@@ -4,33 +4,51 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity; 
-import javax.persistence.GeneratedValue; 
-import javax.persistence.GenerationType; 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity 
-@Table(name = "user_")
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "findUserById", query = "SELECT u FROM User u WHERE u.email = :email")
+})
+@Table(name = "user_")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-    @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO) 
-    private int id; 
-     
-    private String name; 
-    private String lastName; 
-    private String userName; 
-    private String password; 
-    private String email; 
-    private double sumOfAllRatings; 
-    private int numberOfRatings; 
+
+    @Id
+    @Column(name="email", nullable=false)
+    private String email;
+
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    @Column(name="name", nullable=false, length=30)
+    private String name;
+
+    @Column(name="lastName", nullable=false, length=30)
+    private String lastName;
+
+    @Column(name="userName", nullable=false, length=30)
+    private String userName;
+
+    @Column(name="password", nullable=false, length=64)
+    private String password;
+
+    private double sumOfAllRatings;
+
+    private int numberOfRatings;
+
     private Set<Comment> comments;
     //private Set<Auction> auctions;
 
@@ -55,10 +73,7 @@ public class User implements Serializable {
     
     //@OneToMany(cascade=CascadeType.ALL, mappedBy="product")
     //public Set<Auction> getAuctions() { return this.auctions; }
-    
-    public int getId() {
-    	return this.id;
-    }
+
     
     public int getNumberOfRatings() { 
         return numberOfRatings; 
@@ -72,10 +87,6 @@ public class User implements Serializable {
     public double getRank() { 
         return this.sumOfAllRatings / this.numberOfRatings; 
     } 
-
-    public void setId(int id) {
-		this.id = id;
-	}
 
 	public void setName(String name) {
 		this.name = name;
