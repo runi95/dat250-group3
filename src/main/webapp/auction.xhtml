@@ -17,12 +17,12 @@
                     <h3>#{auctionView.auction.product.name}</h3>
                     <img src="data:image/png;base64, #{auctionView.auction.product.pictureAsBase64}"/>
                     <div>
-                        <small>#{a.seller.name} #{auctionView.auction.seller.lastName}, <a
+                        <small>#{auctionView.auction.seller.name} #{auctionView.auction.seller.lastName}, <a
                                 href="mailto:#{auctionView.auction.seller.email}?Subject=#{auctionView.auction.product.name}"
                                 target="_top">mail</a></small>
                     </div>
                     <div>
-                        Current Bid: #{a.lastBid}
+                        Current Bid: #{auctionView.auction.highestBid.amount}
                     </div>
                     <div>
                         <h:form>
