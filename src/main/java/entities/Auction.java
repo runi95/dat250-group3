@@ -95,4 +95,16 @@ public class Auction implements Serializable {
 	public void setSeller(User seller) {
 		this.seller = seller;
 	}
+
+    public Bid getHighestBid() {
+        Bid highestBid = null;
+        for (Bid bid : this.getBids()) {
+            if (bid == null) highestBid = bid;
+            if (highestBid.getAmount() < bid.getAmount()) {
+                highestBid = bid;
+            }
+        }
+
+        return highestBid;
+    }
 }

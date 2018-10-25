@@ -29,4 +29,6 @@ public class Auctions extends ArrayList<Auction> {
 	public void setAuctions(List<Auction> auctions) {
 		this.addAll(auctions);
 	}
+
+
 }
