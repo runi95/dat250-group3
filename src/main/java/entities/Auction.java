@@ -3,7 +3,6 @@ package entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
@@ -34,6 +33,8 @@ public class Auction implements Serializable {
 	private List<Bid> bids;
 	
 	private User seller;
+
+	private Bid highestBid;
 
 	@Transient
 	private Semaphore semaphore = new Semaphore(1);
@@ -76,9 +77,9 @@ public class Auction implements Serializable {
 	
 	public int getId() { return this.id; }
 	
-	public double getLastBid() { return this.lastBid; }
+	//public double getLastBid() { return this.lastBid; }
 	
-	public void setLastBid(double lastBid) { this.lastBid = lastBid; }
+	//public void setLastBid(double lastBid) { this.lastBid = lastBid; }
 	
 	public LocalDateTime getEndTime() { return this.endTime; }
 	
@@ -96,15 +97,14 @@ public class Auction implements Serializable {
 		this.seller = seller;
 	}
 
-    public Bid getHighestBid() {
-        Bid highestBid = null;
-        for (Bid bid : this.getBids()) {
-            if (bid == null) highestBid = bid;
-            if (highestBid.getAmount() < bid.getAmount()) {
-                highestBid = bid;
-            }
+    public void setHighestBid(Bid bid) {
+        if (this.highestBid == null) this.highestBid = bid;
+        if (this.highestBid.getAmount() < bid.getAmount()) {
+                this.highestBid = bid;
         }
-
-        return highestBid;
     }
+
+	public Bid getHighestBid() {
+		return highestBid;
+	}
 }

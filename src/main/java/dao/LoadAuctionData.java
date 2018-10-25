@@ -79,13 +79,13 @@ public class LoadAuctionData {
 	private Auction createAuction(List<Bid> bids, Product product, User seller){
 		Auction auction = new Auction();
 		for (Bid b : bids){
-			auction.addBid(b);
+			auction.setHighestBid(b);
 		}
 
 		auction.setPublishedTime(LocalDateTime.now().minusHours(2));
 		auction.setEndTime(LocalDateTime.now().minusHours(1));
 
-		auction.setLastBid(bids.get(bids.size() - 1).getAmount());
+		//auction.setHighestBid(auction.getHighestBid());
 		auction.setProduct(product);
 		auction.setSeller(seller);
 
