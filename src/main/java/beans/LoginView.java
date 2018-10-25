@@ -90,7 +90,7 @@ public class LoginView implements Serializable {
         catch (ServletException e) {
             log.log(Level.SEVERE, "Failed to logout user!", e);
         }
-        return "/signin?faces-redirect=true";
+        return "/login?faces-redirect=true";
     }
 
     public String getName() {
