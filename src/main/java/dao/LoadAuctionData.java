@@ -70,6 +70,7 @@ public class LoadAuctionData {
 		bidDao.edit(bid2);
 
 		Product product = createProduct("Useful item", 10);
+		product.setPublushedState(true);
 		Auction auction = createAuction(bids, product, seller);
 		productDao.persist(product);
 		auctionDao.persist(auction);
@@ -81,8 +82,8 @@ public class LoadAuctionData {
 			auction.setHighestBid(b);
 		}
 
-		auction.setPublishedTime(LocalDateTime.now());
-		auction.setEndTime(LocalDateTime.now().plusHours(1));
+		auction.setPublishedTime(LocalDateTime.now().minusHours(2));
+		auction.setEndTime(LocalDateTime.now().minusHours(1));
 
 		//auction.setHighestBid(auction.getHighestBid());
 		auction.setProduct(product);
