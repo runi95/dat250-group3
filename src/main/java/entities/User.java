@@ -1,38 +1,59 @@
 package entities; 
  
+import org.checkerframework.checker.units.qual.C;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity; 
-import javax.persistence.GeneratedValue; 
-import javax.persistence.GenerationType; 
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity 
-@Table(name = "user_")
 @XmlRootElement
+@NamedQueries({
+        @NamedQuery(name = "findUserById", query = "SELECT u FROM User u WHERE u.email = :email")
+})
+@Table(name = "user_")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-    @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO) 
-    private int id; 
-     
-    private String name; 
-    private String lastName; 
-    private String userName; 
-    private String password; 
-    private String email; 
-    private double sumOfAllRatings; 
-    private int numberOfRatings; 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(name="email", nullable=false, unique = true)
+    private String email;
+
+    @Column(name="name", nullable=false, length=30)
+    private String name;
+
+    @Column(name="lastName", nullable=false, length=30)
+    private String lastName;
+
+    @Column(name="userName", nullable=false, length=30)
+    private String userName;
+
+    @Column(name="password", nullable=false, length=64)
+    private String password;
+
+    @Column(name = "rating")
+    private double rating;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private double sumOfAllRatings;
+
+    private int numberOfRatings;
+
     private Set<Comment> comments;
-    //private Set<Auction> auctions;
 
     public User() {
 
@@ -44,21 +65,11 @@ public class User implements Serializable {
     	this.userName = userName;
     	this.password = password;
     	this.email = email;
-    	this.sumOfAllRatings = 0.0;
-    	this.numberOfRatings = 0;
     	this.comments = new HashSet<Comment>();
-    	//this.auctions = new HashSet<Auction>();
     }
 
     @OneToMany(mappedBy="product")
     public Set<Comment> getComments() { return this.comments; }
-    
-    //@OneToMany(cascade=CascadeType.ALL, mappedBy="product")
-    //public Set<Auction> getAuctions() { return this.auctions; }
-    
-    public int getId() {
-    	return this.id;
-    }
     
     public int getNumberOfRatings() { 
         return numberOfRatings; 
@@ -67,15 +78,15 @@ public class User implements Serializable {
     public void addRating(double rating) { 
         this.sumOfAllRatings += rating; 
         this.numberOfRatings += 1; 
-    } 
+    }
 
-    public double getRank() { 
-        return this.sumOfAllRatings / this.numberOfRatings; 
-    } 
+    public void setRating(){
+        this.rating = this.sumOfAllRatings / this.numberOfRatings;;
+    }
 
-    public void setId(int id) {
-		this.id = id;
-	}
+    public double getRating() {
+        return rating;
+    } 
 
 	public void setName(String name) {
 		this.name = name;
@@ -108,10 +119,6 @@ public class User implements Serializable {
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
-
-	/*public void setAuctions(Set<Auction> auctions) {
-		this.auctions = auctions;
-	}*/
 
 	public String getName() { 
         return name; 

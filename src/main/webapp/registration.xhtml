@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Registration</title>
+    </h:head>
+
+    <h:body>
+
+        <h:form>
+
+            <f:event listener="#{registerView.validatePassword}"
+                     type="postValidate" />
+
+            <h:panelGrid columns="2">
+
+                First name: <h:inputText value="#{registerView.name}"
+                                         required="true"
+                                         id="first_name"
+                                         requiredMessage="First name is required."
+                                         maxlength="30"/>
+
+                <h:message for="first_name" styleClass="error"/><br/><br/>
+
+                Last name: <h:inputText value="#{registerView.lastName}"
+                                        required="true"
+                                        id="last_name"
+                                        requiredMessage="Last name is required."/>
+
+                <h:message for="last_name" styleClass="error"/><br/><br/>
+
+                User name: <h:inputText value="#{registerView.userName}"
+                                        required="true"
+                                        id="user_name"
+                                        requiredMessage="User name is required."/>
+
+                <h:message for="user_name" styleClass="error"/><br/><br/>
+
+
+
+                Email address: <h:inputText value="#{registerView.email}"
+                                         required="true"
+                                         id="email"
+                                         requiredMessage="Email address is required. #{registerView.email} suidfvbdsc"  >
+                                         <f:validator validatorId="emailValidator"/>
+                </h:inputText>
+
+                <h:message for="email" styleClass="error"/><br/><br/>
+
+                Password: <h:inputSecret value="#{registerView.password}"
+                                         required="true"
+                                         id="password"
+                                         requiredMessage="Password is required."
+                                         validatorMessage="Password must contain atleast one lowercase character,
+                                         uppercase character, a digit and it's length must be between 6 and 20 characters">
+                                         <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"/>
+                </h:inputSecret>
+
+                <h:message for="password" styleClass="error"/><br/><br/>
+
+                Confirm password:<h:inputSecret id="confirmpassword"
+                                                value="#{registerView.confirmPassword}" required="true"
+                                                requiredMessage="Please confirm your password"/>
+
+                <h:message for="confirmpassword" styleClass="error"/><br/><br/>
+
+                <h:commandButton action="#{registerView.register}" value="Register"/>
+
+            </h:panelGrid>
+
+        </h:form>
+
+        <br/><br/>
+
+        <h:link value="I already have an account" outcome="login" />
+
+    </h:body>
+
+</html>

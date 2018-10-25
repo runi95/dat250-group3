@@ -14,7 +14,7 @@
 	</jdbc-connection-pool>
 	<jdbc-resource jndi-name="java:app/jdbc/db_g2018_03" pool-name="derby_net_db_g2018_03_appPool"/>
 
-	<jdbc-connection-pool
+	<!--<jdbc-connection-pool
 			allow-non-component-callers="false" associate-with-thread="false"
 			connection-creation-retry-attempts="0"
 			connection-creation-retry-interval-in-seconds="10"
@@ -41,7 +41,7 @@
 		<property name="URL"  value="jdbc:postgresql://data2.hib.no:5433/db_g2018_03" />
 		<property name="driverClass" value="org.postgresql.Driver" />
 	</jdbc-connection-pool>
-	<jdbc-resource enabled="true" jndi-name="java:app/db_g2018_03" object-type="user" pool-name="post-gre-sql_db_g2018_03Pool"/>
+	<jdbc-resource enabled="true" jndi-name="db_g2018_03" object-type="user" pool-name="post-gre-sql_db_g2018_03Pool"/>-->
 
 
 </resources>
