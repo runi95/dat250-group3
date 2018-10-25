@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,8 +33,11 @@ public class AuctionView implements Serializable {
 
     public AuctionView() {}
 
-    public Auction[] getAuctions() {
-        return auctionDao.findAllOpenAuctions().toArray(new Auction[]{});
+    public List<Auction> getOpenAuctions() {
+        return auctionDao.findAllOpenAuctions();
     }
 
+    public int getAuctionSize() {
+        return auctionDao.findAll().size();
+    }
 }

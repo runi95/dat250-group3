@@ -11,10 +11,16 @@
 </h:head>
 
 <h:body>
-    <h:dataTable value="#{auctionView.auctions}" var="a">
-        <div>
-            #{a.seller.name} #{a.seller.lastName} is selling #{a.product.name}
-        </div>
-    </h:dataTable>
+    Welcome to the auction page!
+
+    <table>
+        <ui:repeat var="a" value="#{auctionView.openAuctions}">
+            <h2>#{a.product.name}</h2>
+            <img src="data:image/png;base64, #{a.product.pictureAsBase64}" />
+            <div>
+                <small>#{a.seller.name} #{a.seller.lastName}, <a href="mailto:#{a.seller.email}?Subject=#{a.product.name}" target="_top">mail</a></small>
+            </div>
+        </ui:repeat>
+    </table>
 </h:body>
 </html>
