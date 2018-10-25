@@ -40,4 +40,12 @@ public class AuctionView implements Serializable {
     public int getAuctionSize() {
         return auctionDao.findAll().size();
     }
+
+    public String viewAuction() {
+        return "auction";
+    }
+
+    public String chooseAuction() {
+        return "auction";
+    }
 }
