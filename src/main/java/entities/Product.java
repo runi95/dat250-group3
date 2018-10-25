@@ -19,7 +19,8 @@ public class Product implements Serializable {
 	private int id;
 	
 	private String name;
-	
+
+	@Column(columnDefinition="TEXT")
 	private String pictureAsBase64;
 	
 	private List<String> features;
