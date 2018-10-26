@@ -1,9 +1,11 @@
 package beans;
 
 import dao.AuctionDao;
+import dao.BidDao;
 import dao.ProductDao;
 import dao.UserEJB;
 import entities.Auction;
+import entities.Bid;
 import entities.Product;
 import entities.User;
 
@@ -40,6 +42,9 @@ public class CreateAuctionView implements Serializable {
     @Inject
     AuctionDao auctionDao;
 
+    @Inject
+    BidDao bidDao;
+
     public CreateAuctionView() {
     }
 
@@ -72,6 +77,14 @@ public class CreateAuctionView implements Serializable {
         auction.setEndTime(endTime.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime());
+
+        Bid bid = new Bid();
+        bid.setAmount(0.0f);
+        bid.setTime(LocalDateTime.now());
+        bid.setUser(user);
+
+        bidDao.persist(bid);
+        auction.setHighestBid(bid);
 
         auctionDao.persist(auction);
 

@@ -4,87 +4,90 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title>Registration</title>
+</h:head>
 
-    <h:head>
-        <title>Registration</title>
-    </h:head>
-
-    <h:body>
-
-        <h:form>
-
-            <f:event listener="#{registerView.validatePassword}"
-                     type="postValidate" />
-
-            <h:panelGrid columns="2">
-
-                <h:outputLabel for="first_name">First name:</h:outputLabel>
-                <h:inputText value="#{registerView.name}"
-                             required="true"
-                             id="first_name"
-                             requiredMessage="First name is required."
-                             maxlength="30"/>
-
-                <h:message for="first_name" styleClass="error"/><br/>
-
-                <h:outputLabel for="last_name">Last name:</h:outputLabel>
-                <h:inputText value="#{registerView.lastName}"
-                             required="true"
-                             id="last_name"
-                             requiredMessage="Last name is required."/>
-
-                <h:message for="last_name" styleClass="error"/><br/>
-
-                <h:outputLabel for="user_name">Username:</h:outputLabel>
-                <h:inputText value="#{registerView.userName}"
-                             required="true"
-                             id="user_name"
-                             requiredMessage="User name is required."/>
-
-                <h:message for="user_name" styleClass="error"/><br/>
-
-
-                <h:outputLabel for="email">Email address:</h:outputLabel>
-                <h:inputText value="#{registerView.email}"
-                             required="true"
-                             id="email"
-                             requiredMessage="Email address is required. #{registerView.email} suidfvbdsc"  >
-                             <f:validator validatorId="emailValidator"/>
-                </h:inputText>
-
-                <h:message for="email" styleClass="error"/><br/>
-
-                <h:outputLabel for="password">Password:</h:outputLabel>
-                <h:inputSecret value="#{registerView.password}"
-                               required="true"
-                               id="password"
-                               requiredMessage="Password is required."
-                               validatorMessage="Password must contain atleast one lowercase character,
-                               uppercase character, a digit and it's length must be between 6 and 20 characters">
-                               <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"/>
-                </h:inputSecret>
-
-                <h:message for="password" styleClass="error"/><br/>
-
-                <h:outputLabel for="confirmpassword">Confirm password:</h:outputLabel>
-                <h:inputSecret id="confirmpassword"
-                               value="#{registerView.confirmPassword}"
-                               required="true"
-                               requiredMessage="Please confirm your password"/>
-
-                <h:message for="confirmpassword" styleClass="error"/><br/>
-
-                <h:commandButton action="#{registerView.register}" value="Register"/>
-
-            </h:panelGrid>
-
-        </h:form>
-
-        <br/><br/>
-
-        <h:link value="I already have an account" outcome="login" />
-
-    </h:body>
+<h:body>
+    <ui:composition template="./master.xhtml">
+        <ui:define name="content">
+            <div class="parent">
+                <div class="child">
+                    <div class="login-box">
+                        <h:form>
+                            <f:event listener="#{registerView.validatePassword}"
+                                     type="postValidate"/>
+                            <div class="form-group">
+                                <h:inputText value="#{registerView.name}"
+                                             a:placeholder="First Name"
+                                             required="true"
+                                             id="first_name"
+                                             requiredMessage="First name is required."
+                                             maxlength="30"
+                                             styleClass="form-control input-opaque"/>
+                                <h:message for="first_name" styleClass="error"/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText value="#{registerView.lastName}"
+                                             a:placeholder="Last Name"
+                                             required="true"
+                                             id="last_name"
+                                             requiredMessage="Last name is required."
+                                             styleClass="form-control input-opaque"/>
+                                <h:message for="last_name" styleClass="error"/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText value="#{registerView.userName}"
+                                             a:placeholder="Username"
+                                             required="true"
+                                             id="user_name"
+                                             requiredMessage="User name is required."
+                                             styleClass="form-control input-opaque"/>
+                                <h:message for="user_name" styleClass="error"/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputText value="#{registerView.email}"
+                                             a:placeholder="Email"
+                                             required="true"
+                                             id="email"
+                                             requiredMessage="Email address is required."
+                                             styleClass="form-control input-opaque">
+                                    <f:validator validatorId="emailValidator"/>
+                                </h:inputText>
+                                <h:message for="email" styleClass="error"/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputSecret value="#{registerView.password}"
+                                               a:placeholder="Password"
+                                               required="true"
+                                               id="password"
+                                               requiredMessage="Password is required."
+                                               validatorMessage="Password must contain atleast one lowercase character,
+                               uppercase character, a digit and it's length must be between 6 and 20 characters"
+                                               styleClass="form-control input-opaque">
+                                    <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})"/>
+                                </h:inputSecret>
+                                <h:message for="password" styleClass="error"/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputSecret id="confirmpassword"
+                                               a:placeholder="Confirm Password"
+                                               value="#{registerView.confirmPassword}"
+                                               required="true"
+                                               requiredMessage="Please confirm your password"
+                                               styleClass="form-control input-opaque"/>
+                                <h:message for="confirmpassword" styleClass="error"/>
+                            </div>
+                            <h:commandButton action="#{registerView.register}" value="Register" styleClass="btn btn-primary btn-login"/>
+                        </h:form>
+                        <h:link value="I already have an account" outcome="login"/>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
 
 </html>

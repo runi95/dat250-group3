@@ -26,7 +26,7 @@
                                              id="email"
                                              requiredMessage="Your email address is required."
                                              styleClass="form-control input-opaque"/>
-                                <h:message for="email" styleClass="error"/><br/>
+                                <h:message for="email" styleClass="error"/>
                             </div>
                             <div class="form-group">
                                 <h:inputSecret value="#{loginView.password}"
@@ -36,9 +36,8 @@
                                                id="password"
                                                requiredMessage="Your password is required."
                                                styleClass="form-control input-opaque"/>
-                                <h:message for="password" styleClass="error"/><br/>
+                                <h:message for="password" styleClass="error"/>
                             </div>
-
                             <h:commandButton action="#{loginView.login}" value="Login"
                                              styleClass="btn btn-primary btn-login"/>
                         </h:form>
