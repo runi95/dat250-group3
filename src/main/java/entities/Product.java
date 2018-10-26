@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "product")
+@NamedQueries({
+		@NamedQuery(name = "findByName", query = "SELECT p FROM Product p WHERE p.name LIKE :name")
+})
 @XmlRootElement
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;

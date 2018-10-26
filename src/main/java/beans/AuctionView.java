@@ -32,6 +32,8 @@ public class AuctionView implements Serializable {
 
     private double rating;
 
+    private String srch;
+
     @Inject
     private AuctionDao auctionDao;
 
@@ -119,5 +121,17 @@ public class AuctionView implements Serializable {
         productDao.edit(auction.getProduct());
 
         return "auction";
+    }
+
+    public String getSrch() { return srch; }
+
+    public void setSrch(String srch) { this.srch = srch; }
+
+    public String getSearch() {
+        return "auctionsearch";
+    }
+
+    public void getSearchResults() {
+        productDao.findByName(srch);
     }
 }

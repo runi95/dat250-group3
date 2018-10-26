@@ -3,18 +3,25 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://java.sun.com/jsf/composite">
 <h:body>
     <ui:composition template="./masterloggedin.xhtml">
         <ui:define name="content">
             <div class="parent">
                 <div class="child">
-                    <h2>
-                        Welcome to the auction page!
-                    </h2>
-                    <h:link value="Create New Auction" outcome="newauction" styleClass="btn btn-primary" />
+                    <!--
+                    <h:form class="form-inline my-2 my-lg-0">
+                        <h:inputText value="#{auctionView.search}"
+                                         a:placeholder="Search"
+                                         required="true"
+                                         id="comment"
+                                         requiredMessage="Comment can't be empty."
+                                         styleClass="form-control">
+                        </h:inputText>
+                        <h:commandButton action="#{auctionView.srch}" value="Search" styleClass="btn btn-outline-success"/>
+                    </h:form>
+                    -->
                     <ui:repeat var="a" value="#{auctionView.openAuctions}">
                         <h3><h:form> Product: <h:commandLink action="#{auctionView.chooseAuction(a.id)}" value="#{a.product.name}" /></h:form></h3>
                         <img src="data:image/png;base64, #{a.product.pictureAsBase64}"/>
