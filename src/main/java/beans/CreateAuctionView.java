@@ -86,7 +86,7 @@ public class CreateAuctionView implements Serializable {
         bidDao.persist(bid);
         auction.setHighestBid(bid);
 
-        auctionDao.persist(auction);
+       auctionDao.persist(auction);
 
         return "auctions";
     }

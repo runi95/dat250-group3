@@ -33,7 +33,7 @@ public class Product implements Serializable {
 	private Auction auction;
 
 	@OneToMany(mappedBy="product")
-	private Set<Comment> comments;
+	private List<Comment> comments;
 
 	@OneToMany(mappedBy="product")
 	private Set<Category> categories;
@@ -49,11 +49,14 @@ public class Product implements Serializable {
 	
 	public void setAuction(Auction auction) { this.auction = auction; }
 
-    public Set<Comment> getComments() { return this.comments; }
+    public List<Comment> getComments() { return this.comments; }
 	
-	public void setComments(Set<Comment> comments) { this.comments = comments; }
+	public void setComments(List<Comment> comments) { this.comments = comments; }
 	
-	public void addComment(Comment comment) { this.comments.add(comment); }
+	public void addComment(Comment comment) {
+		comment.setProduct(this);
+		this.comments.add(comment);
+	}
 
     public Set<Category> getCategories() { return this.categories; }
 	

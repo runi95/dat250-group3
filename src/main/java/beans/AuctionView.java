@@ -1,10 +1,9 @@
 package beans;
 
-import dao.AuctionDao;
-import dao.BidDao;
-import dao.UserEJB;
+import dao.*;
 import entities.Auction;
 import entities.Bid;
+import entities.Comment;
 import entities.User;
 
 import javax.faces.bean.ManagedBean;
@@ -29,6 +28,10 @@ public class AuctionView implements Serializable {
 
     private double bid;
 
+    private String comment;
+
+    private double rating;
+
     @Inject
     private AuctionDao auctionDao;
 
@@ -37,6 +40,12 @@ public class AuctionView implements Serializable {
 
     @Inject
     private UserEJB userDao;
+
+    @Inject
+    private ProductDao productDao;
+
+    @Inject
+    private CommentDao commentDao;
 
     public AuctionView() {}
 
@@ -85,5 +94,30 @@ public class AuctionView implements Serializable {
 
     public void setBid(double bid) {
         this.bid = bid;
+    }
+
+    public String getComment() { return comment; }
+
+    public void setComment(String comment) { this.comment = comment; }
+
+    public double getRating() { return rating; }
+
+    public void setRating(double rating) { this.rating = rating; }
+
+    public String post() {
+        Comment comment = new Comment();
+        comment.setCreated(LocalDateTime.now());
+        comment.setText(this.comment);
+
+        if (this.rating > 0) {
+            comment.setRating(this.rating);
+        }
+
+        auction.getProduct().addComment(comment);
+
+        commentDao.persist(comment);
+        productDao.edit(auction.getProduct());
+
+        return "auction";
     }
 }

@@ -44,7 +44,7 @@ public class Comment implements Serializable {
 	
 	public void setId(int id) { this.id = id; }
 	
-	public double getRating() { return this.rating; }
+	public Double getRating() { return this.rating; }
 	
 	public void setRating(double rating) { this.rating = rating; }
 	

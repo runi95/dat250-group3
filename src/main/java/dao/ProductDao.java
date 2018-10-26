@@ -22,7 +22,7 @@ public class ProductDao extends AbstractDao<Product> {
         product.setPublushedState(false);
         product.setFeatures(new ArrayList<>());
         product.setCategories(new HashSet<>());
-        product.setComments(new HashSet<>());
+        product.setComments(new ArrayList<>());
         super.persist(product);
     }
 }
