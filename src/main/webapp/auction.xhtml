@@ -7,22 +7,10 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:body>
-    <ui:composition template="./master.xhtml">
+    <ui:composition template="./masterloggedin.xhtml">
         <ui:define name="content">
             <div class="parent">
                 <div class="child">
-
-                    <br/>
-
-                    <h:form>
-                        <h:commandButton action="#{loginView.logout}" value="Log out" />
-                    </h:form>
-
-                    <br/>
-
-                    <h2>
-                        Welcome to the auction page!
-                    </h2>
                     <h3> Product: #{auctionView.auction.product.name}</h3>
                     <img src="data:image/png;base64, #{auctionView.auction.product.pictureAsBase64}"/>
                     <div>
